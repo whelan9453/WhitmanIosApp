@@ -1,10 +1,14 @@
 PODS:
-  - Mapbox-iOS-SDK (3.5.3)
+  - Hue (2.0.1)
+  - Mapbox-iOS-SDK (3.5.4)
+  - NextGrowingTextView (1.1.0)
   - SideMenu (2.3.2)
   - SwiftyStateMachine (0.3.0)
 
 DEPENDENCIES:
+  - Hue
   - Mapbox-iOS-SDK
+  - NextGrowingTextView
   - SideMenu
   - SwiftyStateMachine (from `https://github.com/OnePieceLv/SwiftyStateMachine.git`, branch `Swift-3.0`)
 
@@ -19,10 +23,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/OnePieceLv/SwiftyStateMachine.git
 
 SPEC CHECKSUMS:
-  Mapbox-iOS-SDK: 742c77226b2f1e881844319d23d9f1aa2fb042bb
+  Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
+  Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
+  NextGrowingTextView: ad11259355559362ac82046438152a312aa0d7ee
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
   SwiftyStateMachine: 064b3983708aea40169ea60adabbe4ae08885198
 
-PODFILE CHECKSUM: 9e6fa0fae7f16b6103260862432bd0b2a66ce736
+PODFILE CHECKSUM: 3575a855a85acfa15f081b6c2e863ac213c50483
 
 COCOAPODS: 1.2.1.rc.1

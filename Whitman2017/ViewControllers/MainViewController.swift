@@ -19,31 +19,28 @@ protocol ChatViewControllerDelegate: class {
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var navigationTitleView: UIView!
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var chatViewHeightConstraint: NSLayoutConstraint!
     
+    var layer: CAGradientLayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setGradientBar()
         if let chatVC = childViewControllers.first as? ChatViewController {
             chatVC.delegate = self
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .followWithHeading
+        mapView.delegate = self    
     }
     
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
 
 }
 
@@ -55,3 +52,14 @@ extension MainViewController: ChatViewControllerDelegate {
         }
     }
 }
+
+extension MainViewController: MGLMapViewDelegate {
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        return nil
+    }
+    
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        return true
+    }
+}
+

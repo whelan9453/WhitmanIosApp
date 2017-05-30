@@ -6,5 +6,7 @@ target 'Whitman2017' do
 pod 'SideMenu'
 pod 'Mapbox-iOS-SDK'
 pod 'SwiftyStateMachine', :git => 'https://github.com/OnePieceLv/SwiftyStateMachine.git', :branch => 'Swift-3.0'
+pod 'Hue'
+pod 'NextGrowingTextView'
 
 end

@@ -11,43 +11,71 @@ import UIKit
 class MenuViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    var cellTitles: [Caption] = [.story, .task, .about, .restart, .submit]
+    var cellImages: [Asset] = [.storyIcon, .taskIcon, .aboutIcon, .restartIcon, .submitIcon]
+    weak var segueDelegate: SegueDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let identifier = segue.identifier, let target = SegueIdentifier(rawValue: identifier) else {
+            return
+        }
+        switch target {
+        case .toStory:
+            let VC = segue.destination
+            VC.navigationItem.title = Caption.story.rawValue
+        case .toTask:
+            let VC = segue.destination
+            VC.navigationItem.title = Caption.task.rawValue
+        case .toAbout:
+            let VC = segue.destination
+            VC.navigationItem.title = Caption.about.rawValue
+        case .toRestart:
+            let VC = segue.destination
+        case .toSubmit:
+            let VC = segue.destination
+            VC.navigationItem.title = Caption.submit.rawValue
+        default:
+            break
+        }
     }
-    */
 
 }
 
 
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return cellTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
-        cell.textLabel?.text = "Menu item \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+        cell.iconImageView.image = UIImage(asset: cellImages[indexPath.row])
+        cell.descLabel.text = cellTitles[indexPath.row].rawValue
         return cell
     }
 }
 
 extension MenuViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            performSegue(withIdentifier: SegueIdentifier.toStory.rawValue, sender: nil)
+        case 1:
+            performSegue(withIdentifier: SegueIdentifier.toTask.rawValue, sender: nil)
+        case 2:
+            performSegue(withIdentifier: SegueIdentifier.toAbout.rawValue, sender: nil)
+        case 3:
+            performSegue(withIdentifier: SegueIdentifier.toRestart.rawValue, sender: nil)
+        case 4:
+            performSegue(withIdentifier: SegueIdentifier.toSubmit.rawValue, sender: nil)
+        default:
+            break
+        }
+    }
 }

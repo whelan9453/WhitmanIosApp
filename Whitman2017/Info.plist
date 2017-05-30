@@ -20,6 +20,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoiZXdhcmQtZXNpIiwiYSI6ImNqMmt0cWV6ODAwMjMzMnB1bWhndGxiNDcifQ.axXdZ8TkrTR3LUiiW8710w</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>kerker</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Verlag-Book.otf</string>
+		<string>verlag-bold.otf</string>
+		<string>verlag-black.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -30,6 +40,8 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -41,7 +53,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoidG9ieWhzdSIsImEiOiJjajFhcDQ2dngwOG44MzJxcTQzMnUzNTlzIn0.Z8v0_3rgCvXuGAxzm3mg_A</string>
 </dict>
 </plist>
