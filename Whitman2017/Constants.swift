@@ -9,6 +9,42 @@
 import Foundation
 import UIKit
 
+// MARK: - Protocols
+
+protocol SegueDelegate: class {
+    func segue(to identifier: SegueIdentifier)
+}
+
+protocol StatePropertiesProtocol {
+    var message: Any { get }
+    var retryLimit: Int? { get }
+}
+
+// MARK: - Events and states in schema
+
+/// W1 Location state
+enum W1State: StatePropertiesProtocol {
+    
+    /// 3種case: boss回答純文字（String）、boss隨機回答文字（[String]）、boos回答有選項的文字（[String: Any]）
+    // case makeChoices: return ["message": "tell me what's you choice?", "options": ["OP1", "OP2", "OP3"]]
+    // options這個key中是要放要顯示在泡泡裡要給user選的按鈕（動態產生）
+    var message: Any {
+        return ""
+    }
+    var retryLimit: Int? {
+        return nil
+    }
+}
+
+/// User behaviors for all schemas
+enum UserEvent {
+    case options(Int)
+    case statement(String)
+    case photo(UIImage)
+}
+
+// MARK: - DEFINE
+
 enum MessageType {
     case mine
     case opponent
@@ -74,8 +110,4 @@ struct Constants {
     static let messageSpacing: CGFloat = 20
     static let messageInsets = UIEdgeInsets(top: 3.4, left: 15.7, bottom: 10.6, right: 15.7)
     static let messageLimitSpacing = UIScreen.main.bounds.width * 0.8    
-}
-
-protocol SegueDelegate: class {
-    func segue(to identifier: SegueIdentifier)
 }

@@ -9,10 +9,6 @@
 import UIKit
 import Mapbox
 
-enum PlayerOperation {
-    case uploadPhoto
-}
-
 protocol ChatViewControllerDelegate: class {
     func reSizeHeight(_ height: CGFloat)
 }
@@ -24,16 +20,20 @@ class MainViewController: UIViewController {
     @IBOutlet weak var chatViewHeightConstraint: NSLayoutConstraint!
     
     var layer: CAGradientLayer!
-    
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setGradientBar()
         if let chatVC = childViewControllers.first as? ChatViewController {
             chatVC.delegate = self
         }
-        mapView.showsUserLocation = true
         mapView.userTrackingMode = .followWithHeading
-        mapView.delegate = self    
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     // MARK: - Navigation
@@ -60,6 +60,15 @@ extension MainViewController: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
+    }
+}
+
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        mapView.setCenter(center, zoomLevel: 14, animated: true)
+        locationManager.stopUpdatingLocation()
     }
 }
 

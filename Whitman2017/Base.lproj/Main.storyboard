@@ -702,7 +702,7 @@ YOU WANT TO PLAY:</string>
             </objects>
             <point key="canvasLocation" x="3097" y="-397"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Delegate-->
         <scene sceneID="dli-wK-oux">
             <objects>
                 <viewController id="cZk-n7-ubr" customClass="MainViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
@@ -720,10 +720,10 @@ YOU WANT TO PLAY:</string>
                                 <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="latitude">
-                                        <real key="value" value="25.078392999999998"/>
+                                        <real key="value" value="25.121791600000002"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="longitude">
-                                        <real key="value" value="121.463666"/>
+                                        <real key="value" value="121.49702929999999"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
                                         <real key="value" value="14"/>
@@ -731,6 +731,9 @@ YOU WANT TO PLAY:</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/eward-esi/cj2wbd9g200052sp0hk2miufu"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="cZk-n7-ubr" id="5P8-Fc-IZP"/>
+                                </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-x1-a5m">
                                 <rect key="frame" x="0.0" y="530" width="375" height="137"/>
