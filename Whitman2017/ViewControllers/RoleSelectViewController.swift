@@ -11,6 +11,8 @@ import UIKit
 class RoleSelectViewController: UIViewController {
     @IBOutlet weak var DEButton: UIButton!
     @IBOutlet weak var DTButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
     var borderLayer = CALayer()
     
     override func viewDidLoad() {
@@ -27,6 +29,12 @@ class RoleSelectViewController: UIViewController {
     
     @IBAction func selectAction(_ sender: UIButton) {
         sender.layer.addSublayer(borderLayer)
+        if sender == DTButton {
+            UserDefaults.standard.set(PlayerRole.dumboTimes.rawValue, forKey: Keys.role)
+        } else {
+            UserDefaults.standard.set(PlayerRole.dumboEnquirer.rawValue, forKey: Keys.role)
+        }
+        nextButton.isEnabled = true
     }
 
     /*

@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     // MARK: - Navigation

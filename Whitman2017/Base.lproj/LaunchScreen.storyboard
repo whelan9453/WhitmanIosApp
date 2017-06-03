@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,6 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landingPageBg" translatesAutoresizingMaskIntoConstraints="NO" id="Up9-zc-v6t">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="24k-cc-M3F">
                                 <rect key="frame" x="62.5" y="206.5" width="250" height="254"/>
                                 <constraints>
@@ -29,10 +33,14 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.1764705882352941" green="0.16078431372549018" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Up9-zc-v6t" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="0Kl-Mz-8OW"/>
+                            <constraint firstItem="Up9-zc-v6t" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="4fx-tP-aRR"/>
                             <constraint firstItem="24k-cc-M3F" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NvD-9M-ars"/>
+                            <constraint firstAttribute="trailing" secondItem="Up9-zc-v6t" secondAttribute="trailing" id="Ykh-XJ-POI"/>
                             <constraint firstItem="24k-cc-M3F" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ioQ-Ps-jxo"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Up9-zc-v6t" secondAttribute="bottom" id="ryU-Lb-Urq"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +50,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="landingPageBg" width="414" height="736"/>
         <image name="logo" width="250" height="254"/>
     </resources>
 </document>

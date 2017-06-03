@@ -24,7 +24,7 @@
         <!--Home View Controller-->
         <scene sceneID="b7z-75-uyX">
             <objects>
-                <viewController id="LQ7-qe-6k4" customClass="HomeViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQ7-qe-6k4" customClass="HomeViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VdR-DO-aUM"/>
                         <viewControllerLayoutGuide type="bottom" id="ee2-2c-m9S"/>
@@ -172,8 +172,8 @@ YOU WANT TO PLAY:</string>
                                 <color key="textColor" red="0.24313725489999999" green="0.22352941179999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqr-M9-Xey">
-                                <rect key="frame" x="113" y="536" width="150" height="87"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqr-M9-Xey">
+                                <rect key="frame" x="113" y="550" width="150" height="87"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="BlJ-GE-pjU"/>
                                 </constraints>
@@ -269,7 +269,7 @@ YOU WANT TO PLAY:</string>
                             <constraint firstItem="phr-Ao-wK7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="3On-j8-k78"/>
                             <constraint firstAttribute="trailing" secondItem="HT5-AB-qXz" secondAttribute="trailing" constant="20" id="AZr-H6-evK"/>
                             <constraint firstItem="HT5-AB-qXz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="BLO-vk-ITq"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Gqr-M9-Xey" secondAttribute="bottom" constant="44" id="CAX-jL-xIt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Gqr-M9-Xey" secondAttribute="bottom" constant="30" id="CAX-jL-xIt"/>
                             <constraint firstItem="4Ni-4D-avs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="J0N-4M-hLJ"/>
                             <constraint firstAttribute="trailing" secondItem="phr-Ao-wK7" secondAttribute="trailing" id="Ou0-D8-2hw"/>
                             <constraint firstItem="4Ni-4D-avs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QFQ-Lb-Tbe"/>
@@ -282,6 +282,7 @@ YOU WANT TO PLAY:</string>
                     <connections>
                         <outlet property="DEButton" destination="UJC-Tv-tth" id="qLc-gi-25Q"/>
                         <outlet property="DTButton" destination="nLa-HE-0mY" id="eWn-AU-bZX"/>
+                        <outlet property="nextButton" destination="Gqr-M9-Xey" id="2nR-DX-8FE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -303,8 +304,8 @@ YOU WANT TO PLAY:</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="introBGtexture" translatesAutoresizingMaskIntoConstraints="NO" id="MsQ-MC-i0X">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lr-eV-ef3">
-                                <rect key="frame" x="114" y="536" width="147" height="87"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lr-eV-ef3">
+                                <rect key="frame" x="114" y="550" width="147" height="87"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="87" id="YWK-Ay-YBZ"/>
                                     <constraint firstAttribute="width" constant="147" id="rFa-jV-ODW"/>
@@ -331,6 +332,9 @@ YOU WANT TO PLAY:</string>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Verlag-Book" family="Verlag" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="fFL-Vs-1TC" id="0eV-gn-b9d"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nameIcon" translatesAutoresizingMaskIntoConstraints="NO" id="L4L-9j-ntB">
                                         <rect key="frame" x="7.5" y="5.5" width="21" height="21"/>
@@ -360,6 +364,9 @@ YOU WANT TO PLAY:</string>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Verlag-Book" family="Verlag" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="fFL-Vs-1TC" id="KDO-0S-Fby"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-cF-2GY">
                                         <rect key="frame" x="7.5" y="5.5" width="21" height="21"/>
@@ -393,7 +400,7 @@ YOU WANT TO PLAY:</string>
                             <constraint firstItem="MsQ-MC-i0X" firstAttribute="top" secondItem="UhR-9f-1vF" secondAttribute="topMargin" id="bgc-E7-r48"/>
                             <constraint firstAttribute="bottomMargin" secondItem="MsQ-MC-i0X" secondAttribute="bottom" id="bpp-cr-9of"/>
                             <constraint firstAttribute="trailing" secondItem="bvj-hX-int" secondAttribute="trailing" constant="85.700000000000003" id="ib3-PI-dq6"/>
-                            <constraint firstItem="hvd-Oi-0si" firstAttribute="top" secondItem="8lr-eV-ef3" secondAttribute="bottom" constant="44" id="mpz-LD-IdK"/>
+                            <constraint firstItem="hvd-Oi-0si" firstAttribute="top" secondItem="8lr-eV-ef3" secondAttribute="bottom" constant="30" id="mpz-LD-IdK"/>
                             <constraint firstItem="MsQ-MC-i0X" firstAttribute="leading" secondItem="UhR-9f-1vF" secondAttribute="leading" id="n2x-NZ-bdU"/>
                             <constraint firstItem="bvj-hX-int" firstAttribute="leading" secondItem="UhR-9f-1vF" secondAttribute="leading" constant="85.299999999999997" id="nci-kk-Fw7"/>
                             <constraint firstItem="j4M-0e-j6z" firstAttribute="top" secondItem="bvj-hX-int" secondAttribute="bottom" constant="29" id="pph-RE-bcj"/>
@@ -401,8 +408,11 @@ YOU WANT TO PLAY:</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mailTextField" destination="2Q0-Ck-U8D" id="PPM-FQ-jda"/>
                         <outlet property="mailView" destination="j4M-0e-j6z" id="VxU-Pu-O6O"/>
+                        <outlet property="nameTextField" destination="MWm-qd-iCz" id="IGO-wo-vBa"/>
                         <outlet property="nameView" destination="bvj-hX-int" id="PCU-rQ-BNG"/>
+                        <outlet property="startButton" destination="8lr-eV-ef3" id="cqy-jz-xPh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCE-HY-rzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -759,7 +769,7 @@ YOU WANT TO PLAY:</string>
                     <navigationItem key="navigationItem" id="Wh7-oP-eYS">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="sidebarIcon" id="3L5-D7-S90">
-                            <inset key="imageInsets" minX="5" minY="7" maxX="0.0" maxY="5"/>
+                            <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="yBL-Mi-r3f" kind="show" id="Rr8-nA-H0s"/>
@@ -781,6 +791,9 @@ YOU WANT TO PLAY:</string>
                                 <constraint firstAttribute="trailing" secondItem="qCh-xy-YTr" secondAttribute="trailing" id="s1Q-nU-yBU"/>
                             </constraints>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="5cd-c1-jS0">
+                            <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chatViewHeightConstraint" destination="yMh-Db-ml3" id="Y3b-Oa-Rvh"/>
@@ -795,7 +808,7 @@ YOU WANT TO PLAY:</string>
         <!--Navigation Controller-->
         <scene sceneID="ewe-XN-2MC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7jV-Ck-lpC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GameStart" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7jV-Ck-lpC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WKk-1S-KHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1337,6 +1350,9 @@ LOCATION</string>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Verlag-Bold" family="Verlag" pointSize="20"/>
                                 <state key="normal" title="YES" backgroundImage="yes"/>
+                                <connections>
+                                    <action selector="restartAction:" destination="WDC-ve-qmi" eventType="touchUpInside" id="Avi-2k-3l8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.24313725490196078" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1416,11 +1432,12 @@ LOCATION</string>
     </scenes>
     <resources>
         <image name="bg01" width="414" height="736"/>
-        <image name="bossHeadIcon" width="112" height="112"/>
+        <image name="bossHeadIcon" width="106" height="106"/>
         <image name="cameraIcon" width="28" height="22"/>
         <image name="characterLocation" width="41" height="60"/>
         <image name="deLogo" width="140" height="140"/>
         <image name="dtLogo" width="140" height="140"/>
+        <image name="exit" width="26" height="26"/>
         <image name="findyourposition" width="41" height="41"/>
         <image name="headerIcon" width="211" height="54"/>
         <image name="historicalLocation" width="41" height="60"/>

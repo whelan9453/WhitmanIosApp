@@ -37,6 +37,14 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         inputTextView.maxNumberOfLines = 7
+        
+        guard let roleString = UserDefaults.standard.value(forKey: Keys.role) as? String,
+            let role = PlayerRole(rawValue: roleString) else {
+                return
+        }
+        profileImageView.image = role == .dumboTimes ? UIImage(asset: .timesBoosIcon) : UIImage(asset: .enquirerBossIcon)
+        newspaperImageView.image = role == .dumboTimes ? UIImage(asset: .timesMessagerLogo) : UIImage(asset: .enquirerMessagerLogo)
+        
     }
 
     func keyboardWillHide(_ sender: Notification) {

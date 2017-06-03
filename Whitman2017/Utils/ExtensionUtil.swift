@@ -34,11 +34,16 @@ extension UINavigationController {
         navigationBar.backgroundColor = .clear
         
         let barView = UIView(frame: navigationBar.frame)
-        barView.frame.origin.y = 20
+        if let root = view.window?.rootViewController {
+            if root == self {
+                barView.frame.origin.y -= 20
+            }
+        }
         let gradientLayer = [UIColor(hex: "#3E3935"), UIColor(hex: "#231F20")].gradient { [unowned self] gradient in
             gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
             gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
             gradient.frame = self.navigationBar.bounds
+            gradient.frame.size.height += 20    // status bar height
             return gradient
         }
         barView.layer.insertSublayer(gradientLayer, at: 0)

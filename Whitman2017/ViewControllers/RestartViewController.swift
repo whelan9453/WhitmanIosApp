@@ -19,6 +19,13 @@ class RestartViewController: UIViewController {
         dismiss(animated: true)
     }
 
+    @IBAction func restartAction(_ sender: UIButton) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        appDelegate.window?.rootViewController = VC
+    }
+    
     /*
     // MARK: - Navigation
 

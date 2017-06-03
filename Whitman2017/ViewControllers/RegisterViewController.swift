@@ -11,6 +11,9 @@ import UIKit
 class RegisterViewController: UIViewController {
     @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var mailView: UIView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var mailTextField: UITextField!
+    @IBOutlet weak var startButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +27,8 @@ class RegisterViewController: UIViewController {
     }
 
     @IBAction func startAction(_ sender: UIButton) {
-        
+        UserDefaults.standard.set(mailTextField.text!, forKey: Keys.email)
+        UserDefaults.standard.set(nameTextField.text!, forKey: Keys.userName)
     }
 
     /*
@@ -37,4 +41,11 @@ class RegisterViewController: UIViewController {
     }
     */
 
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        startButton.isEnabled = nameTextField.text?.isEmpty == false && mailTextField.text?.isEmpty == false
+        return true
+    }
 }

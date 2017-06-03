@@ -75,10 +75,19 @@ enum Asset: String {
     case aboutIcon = "aboutIcon"
     case restartIcon = "restartIcon"
     case submitIcon = "submitIcon"
+    case timesBoosIcon = "bossHeadIcon"
+    case enquirerBossIcon = "bossHeadIconEnquirer"
+    case timesMessagerLogo = "timesMessagerLogo"
+    case enquirerMessagerLogo = "enquirerMessagerLogo"
     
     var image: UIImage {
         return UIImage(named: self.rawValue)!
     }
+}
+
+enum PlayerRole: String {
+    case dumboTimes = "DumboTimes"
+    case dumboEnquirer = "DumboEnquirer"
 }
 
 enum SegueIdentifier: String {
@@ -109,5 +118,13 @@ struct Constants {
     static let chatVCMinHeight: CGFloat = 137
     static let messageSpacing: CGFloat = 20
     static let messageInsets = UIEdgeInsets(top: 3.4, left: 15.7, bottom: 10.6, right: 15.7)
-    static let messageLimitSpacing = UIScreen.main.bounds.width * 0.8    
+    static let messageLimitSpacing = UIScreen.main.bounds.width * 0.8
+    
+}
+
+// UserDefault
+struct Keys {
+    static let role = "Role"
+    static let email = "Email"
+    static let userName = "UserName"
 }
