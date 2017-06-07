@@ -2,6 +2,8 @@
 //  MenuViewController.swift
 //  Whitman2017
 //
+//  This View Controller is for the side bar.
+//
 //  Created by Toby Hsu on 2017/4/9.
 //  Copyright © 2017年 Orav. All rights reserved.
 //
@@ -13,40 +15,35 @@ class MenuViewController: UIViewController {
     
     var cellTitles: [Caption] = [.story, .task, .about, .restart, .submit]
     var cellImages: [Asset] = [.storyIcon, .taskIcon, .aboutIcon, .restartIcon, .submitIcon]
-    weak var segueDelegate: SegueDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier, let target = SegueIdentifier(rawValue: identifier) else {
             return
         }
+        
+        //Set up destination page's title
+        //FIXME multiple clicks would open duplicate new pages
+        let VC = segue.destination
         switch target {
         case .toStory:
-            let VC = segue.destination
             VC.navigationItem.title = Caption.story.rawValue
         case .toTask:
-            let VC = segue.destination
             VC.navigationItem.title = Caption.task.rawValue
         case .toAbout:
-            let VC = segue.destination
             VC.navigationItem.title = Caption.about.rawValue
-        case .toRestart:
-            let VC = segue.destination
         case .toSubmit:
-            let VC = segue.destination
             VC.navigationItem.title = Caption.submit.rawValue
-        default:
+        case .toRestart:
             break
         }
     }
-
 }
-
 
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,17 +59,18 @@ extension MenuViewController: UITableViewDataSource {
 }
 
 extension MenuViewController: UITableViewDelegate {
+    //OnClickListeners: We need a delegate for these table view items to transfer between pages
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0:
+        case cellTitles.index(of: Caption.story)!:
             performSegue(withIdentifier: SegueIdentifier.toStory.rawValue, sender: nil)
-        case 1:
+        case cellTitles.index(of: Caption.task)!:
             performSegue(withIdentifier: SegueIdentifier.toTask.rawValue, sender: nil)
-        case 2:
+        case cellTitles.index(of: Caption.about)!:
             performSegue(withIdentifier: SegueIdentifier.toAbout.rawValue, sender: nil)
-        case 3:
+        case cellTitles.index(of: Caption.restart)!:
             performSegue(withIdentifier: SegueIdentifier.toRestart.rawValue, sender: nil)
-        case 4:
+        case cellTitles.index(of: Caption.submit)!:
             performSegue(withIdentifier: SegueIdentifier.toSubmit.rawValue, sender: nil)
         default:
             break
