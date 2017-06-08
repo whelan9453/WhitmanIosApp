@@ -15,16 +15,16 @@ protocol TutorialPagerDelegate: class {
 class TutorialPageViewController: UIPageViewController {
 
     private(set) lazy var allViewControllers: [UIViewController] = {
-        return [self.getControllerFromStoryboard(with: "Tutorial1"),
-                self.getControllerFromStoryboard(with: "Tutorial2"),
-                self.getControllerFromStoryboard(with: "Tutorial3")]
+        return [self.getControllerFromStoryboard(with: TutorialIdentifier.page1.rawValue),
+                self.getControllerFromStoryboard(with: TutorialIdentifier.page2.rawValue),
+                self.getControllerFromStoryboard(with: TutorialIdentifier.page3.rawValue)]
     }()
     weak var pagerDelegate: TutorialPagerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = self
-        delegate = self
+        dataSource = self //Set self as DataSource
+        delegate = self //Set self as Delegate
         if let firstViewController = allViewControllers.first {
             setViewControllers([firstViewController], direction: .forward, animated: true)
         }
@@ -47,49 +47,40 @@ class TutorialPageViewController: UIPageViewController {
 }
 
 extension TutorialPageViewController: UIPageViewControllerDelegate {
-    
+    //Called after a gesture-driven transition completes.
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        //where does this "viewControllers" come from?
+        if let firstViewController = viewControllers?.first,
+            let index = allViewControllers.index(of: firstViewController) {
+            //It's declared here but initialized at HomeViewController? How does this work?
+            pagerDelegate?.pageNumberChanged(index: index)
+        }
+    }
 }
 
 extension TutorialPageViewController: UIPageViewControllerDataSource {
+    
+    //Returns the view controller after the given view controller.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let index = allViewControllers.index(of: viewController) else {
             return nil
         }
-        
         let nextIndex = index + 1
-        let orderedViewControllersCount = allViewControllers.count
-        
-        guard orderedViewControllersCount != nextIndex else {
-            return nil
-        }
-        
-        guard orderedViewControllersCount > nextIndex else {
+        guard 0 ... (allViewControllers.count - 1) ~= nextIndex else {
             return nil
         }
         return allViewControllers[nextIndex]
     }
     
+    //Returns the view controller before the given view controller.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = allViewControllers.index(of: viewController) else {
             return nil
         }
-        
         let previousIndex = index - 1
-        
-        guard previousIndex >= 0 else {
-            return nil
-        }
-        
-        guard allViewControllers.count > previousIndex else {
+        guard 0 ... (allViewControllers.count - 1) ~= previousIndex else {
             return nil
         }
         return allViewControllers[previousIndex]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let firstViewController = viewControllers?.first,
-            let index = allViewControllers.index(of: firstViewController) {
-            pagerDelegate?.pageNumberChanged(index: index)
-        }
     }
 }
