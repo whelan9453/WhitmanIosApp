@@ -18,11 +18,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var chatViewHeightConstraint: NSLayoutConstraint!
     
+    let locationManager = CLLocationManager()
+    
     var mapView: MGLMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layoutIfNeeded()
+        
+        locationManager.delegate = self
+        
         navigationController?.setGradientBar()
         if let chatVC = childViewControllers.first as? ChatViewController {
             chatVC.delegate = self
@@ -50,7 +55,44 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
+    
+    //Core Location requires each geofence to be represented as a CLCircularRegion instance before it can be registered for monitoring.
+    func region(withGeotification geotification: Geotification) -> CLCircularRegion {
+        let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
+        region.notifyOnEntry = (geotification.eventType == .onEntry)
+        region.notifyOnExit = (geotification.eventType == .onExit)
+        return region
+    }
+    
+    func startMonitoring(geotification: Geotification) {
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
+            return
+        }
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
+        }
+        let region = self.region(withGeotification: geotification)
+        locationManager.startMonitoring(for: region)
+    }
+    
+    func stopMonitoring(geotification: Geotification) {
+        for region in locationManager.monitoredRegions {
+            guard let circularRegion = region as? CLCircularRegion, circularRegion.identifier == geotification.identifier else { continue }
+            locationManager.stopMonitoring(for: circularRegion)
+        }
+    }
 
+}
+
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("Monitoring failed for region with identifier: \(region!.identifier)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location Manager failed with the following error: \(error)")
+    }
 }
 
 extension MainViewController: ChatViewControllerDelegate {

@@ -9,11 +9,13 @@
 import UIKit
 import SideMenu
 import Hue
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        resetUserDefault()
@@ -23,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let VC = storyboard.instantiateViewController(withIdentifier: "GameStart")
             window?.rootViewController = VC
         }
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         return true
     }
     
@@ -43,5 +48,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func resetUserDefault() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier ?? "")
     }
+    
+    func handleEvent(forRegion region: CLRegion!) {
+        //TODO Implement events
+        print("Geofence triggered!")
+    }
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
+}
