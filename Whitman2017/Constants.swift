@@ -90,6 +90,7 @@ enum PlayerRole: String {
     case dumboEnquirer = "DumboEnquirer"
 }
 
+//SegueIdentifiers can be found in Main.storyboard
 enum SegueIdentifier: String {
     case toStory = "ToStory"
     case toTask = "ToTask"
@@ -127,4 +128,11 @@ struct Keys {
     static let role = "Role"
     static let email = "Email"
     static let userName = "UserName"
+}
+
+//TutorialIdentifiers can be found in Main.storyboard
+enum TutorialIdentifier: String {
+    case page1 = "Tutorial1"
+    case page2 = "Tutorial2"
+    case page3 = "Tutorial3"
 }

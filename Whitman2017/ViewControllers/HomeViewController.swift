@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
 
 }
 
+//Delegate for transferring to TutorialViewController
 extension HomeViewController: TutorialPagerDelegate {
     func pageNumberChanged(index: Int) {
         pageControl.currentPage = index
