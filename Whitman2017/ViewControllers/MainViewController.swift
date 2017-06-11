@@ -32,11 +32,17 @@ class MainViewController: UIViewController {
         mapView = MGLMapView(frame: mapContainerView.bounds)
         mapView.styleURL = URL(string: "mapbox://styles/eward-esi/cj2wbd9g200052sp0hk2miufu")
         mapView.delegate = self
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation = false
         mapView.zoomLevel = 18
         mapView.compassView.isHidden = true
-        mapView.userLocation?.title = AnnotationTitle.userLocation.rawValue
         mapContainerView.addSubview(mapView)
+        setupTaskPoint()
+    }
+    
+    func setupTaskPoint() {
+        let pointAnnotations = TaskRegion.all.map { $0.point }
+        mapView.addAnnotations(pointAnnotations)
+        
     }
     
     // MARK: - Navigation
@@ -63,13 +69,13 @@ extension MainViewController: MGLMapViewDelegate {
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
+//        mapView.showsUserLocation = true
+//        mapView.userTrackingMode = .followWithHeading
         return true
     }
     
     func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
-        if annotation.responds(to: #selector(getter: UIPreviewActionItem.title)) && annotation.title! == AnnotationTitle.userLocation.rawValue {
+        if annotation.responds(to: #selector(getter: UIPreviewActionItem.title)) {
             return PromptView(representedObject: annotation)
         }
         
@@ -81,19 +87,24 @@ extension MainViewController: MGLMapViewDelegate {
     }
     
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        let reuseIdentifier = "userLocation"
+        guard annotation is MGLPointAnnotation, let title = annotation.title,
+            let region = TaskRegion.getRegion(with: title!) else {
+            return nil
+        }
+        let reuseIdentifier = title!
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         if annotationView == nil {
             annotationView = MGLUserLocationAnnotationView(reuseIdentifier: reuseIdentifier)
-            annotationView?.frame.size = CGSize(width: 49, height: 74)
-            annotationView?.addSubview(UIImageView(image: UIImage(asset: .userLocation)))
+            annotationView?.frame.size = CGSize(width: 33, height: 49)
+            annotationView?.addSubview(UIImageView(image: region.image))
         }
         return annotationView
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
-        mapView.setCenter(mapView.userLocation!.coordinate, animated: false)
-        mapView.userTrackingMode = .followWithHeading
+        mapView.setCenter(TaskRegion.HQ.point.coordinate, animated: true)
+//        mapView.setCenter(mapView.userLocation!.coordinate, animated: false)
+//        mapView.userTrackingMode = .followWithHeading
     }
     
     

@@ -696,7 +696,7 @@ YOU WANT TO PLAY:</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yBL-Mi-r3f" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dQu-Rt-Xo5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dQu-Rt-Xo5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -793,7 +793,7 @@ YOU WANT TO PLAY:</string>
             <objects>
                 <navigationController storyboardIdentifier="GameStart" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7jV-Ck-lpC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WKk-1S-KHQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WKk-1S-KHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -825,7 +825,7 @@ YOU WANT TO PLAY:</string>
                                     <constraint firstAttribute="height" constant="4" id="fZG-Xj-up5"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Maf-Lk-24u">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Maf-Lk-24u">
                                 <rect key="frame" x="0.0" y="51" width="375" height="86"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yTQ-3H-taa">
@@ -888,28 +888,32 @@ YOU WANT TO PLAY:</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timesMessagerLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5C8-9i-3wu">
                                 <rect key="frame" x="28" y="72" width="172" height="26"/>
                             </imageView>
-                            <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQZ-aW-K01">
+                            <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UQZ-aW-K01">
                                 <rect key="frame" x="0.0" y="88" width="375" height="49"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkA-dM-UFG">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="0GH-PR-qEZ"/>
+                                            <constraint firstAttribute="height" constant="49" id="Nqh-Qp-fim"/>
                                         </constraints>
                                         <state key="normal" image="cameraIcon"/>
                                         <connections>
                                             <action selector="cameraAction:" destination="oHV-Qa-H70" eventType="touchUpInside" id="COy-nc-Ugo"/>
                                         </connections>
                                     </button>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gq0-nb-Byd">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gq0-nb-Byd">
                                         <rect key="frame" x="72" y="5.5" width="285.5" height="38"/>
                                         <subviews>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsV-Ej-ECb" customClass="NextGrowingTextView" customModule="NextGrowingTextView">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fsV-Ej-ECb" customClass="NextGrowingTextView" customModule="NextGrowingTextView">
                                                 <rect key="frame" x="0.0" y="0.0" width="251" height="38"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEb-dA-wqi">
                                                 <rect key="frame" x="251" y="0.0" width="29" height="38"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="38" id="SC9-xp-6CR"/>
+                                                </constraints>
                                                 <state key="normal" image="sendIcon"/>
                                                 <connections>
                                                     <action selector="sendAction:" destination="oHV-Qa-H70" eventType="touchUpInside" id="7fo-Wf-6rv"/>
@@ -925,7 +929,6 @@ YOU WANT TO PLAY:</string>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37.899999999999999" id="hxe-EH-XML"/>
                                             <constraint firstItem="fsV-Ej-ECb" firstAttribute="top" secondItem="gq0-nb-Byd" secondAttribute="top" id="lMY-ob-b21"/>
                                             <constraint firstItem="fsV-Ej-ECb" firstAttribute="leading" secondItem="gq0-nb-Byd" secondAttribute="leading" id="zAH-PN-Plf"/>
-                                            <constraint firstItem="hEb-dA-wqi" firstAttribute="top" secondItem="gq0-nb-Byd" secondAttribute="top" id="zXB-Vi-hXH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -934,7 +937,6 @@ YOU WANT TO PLAY:</string>
                                     <constraint firstAttribute="trailing" secondItem="gq0-nb-Byd" secondAttribute="trailing" constant="17.699999999999999" id="BRU-xs-Qn7"/>
                                     <constraint firstAttribute="bottom" secondItem="LkA-dM-UFG" secondAttribute="bottom" id="GEU-61-TRG"/>
                                     <constraint firstAttribute="bottom" secondItem="gq0-nb-Byd" secondAttribute="bottom" constant="5.5999999999999996" id="Kyx-qo-bDS"/>
-                                    <constraint firstItem="LkA-dM-UFG" firstAttribute="top" secondItem="UQZ-aW-K01" secondAttribute="top" id="Tmm-YS-RZ3"/>
                                     <constraint firstItem="gq0-nb-Byd" firstAttribute="leading" secondItem="LkA-dM-UFG" secondAttribute="trailing" id="X6i-tX-qxv"/>
                                     <constraint firstItem="gq0-nb-Byd" firstAttribute="top" secondItem="UQZ-aW-K01" secondAttribute="top" constant="5.5999999999999996" id="pgE-1b-y2a"/>
                                     <constraint firstItem="LkA-dM-UFG" firstAttribute="leading" secondItem="UQZ-aW-K01" secondAttribute="leading" id="yBo-L4-Jp9"/>
@@ -951,7 +953,7 @@ YOU WANT TO PLAY:</string>
                             <constraint firstItem="vqd-pK-g8s" firstAttribute="top" secondItem="sdO-pi-Mdk" secondAttribute="bottom" constant="47" id="DF2-WB-WoE"/>
                             <constraint firstAttribute="bottom" secondItem="UQZ-aW-K01" secondAttribute="bottom" id="FKa-a4-HGX"/>
                             <constraint firstItem="iqq-fe-z78" firstAttribute="leading" secondItem="5C8-9i-3wu" secondAttribute="trailing" constant="40" id="GhV-9w-3bw"/>
-                            <constraint firstItem="UQZ-aW-K01" firstAttribute="top" secondItem="Maf-Lk-24u" secondAttribute="bottom" constant="-49" id="Jje-cV-by9"/>
+                            <constraint firstItem="UQZ-aW-K01" firstAttribute="top" secondItem="Maf-Lk-24u" secondAttribute="bottom" id="Jje-cV-by9"/>
                             <constraint firstItem="5C8-9i-3wu" firstAttribute="leading" secondItem="3Yp-kc-0Bx" secondAttribute="leading" constant="28" id="Zyt-dS-7C5"/>
                             <constraint firstItem="UQZ-aW-K01" firstAttribute="leading" secondItem="3Yp-kc-0Bx" secondAttribute="leading" id="eLt-e2-OhQ"/>
                             <constraint firstAttribute="trailing" secondItem="Maf-Lk-24u" secondAttribute="trailing" id="hOu-y5-HTo"/>

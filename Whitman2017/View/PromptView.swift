@@ -27,6 +27,7 @@ class PromptView: UIView, MGLCalloutView {
         textView.font = UIFont(name: "Verlag-Bold", size: 15)
         textView.textColor = UIColor(hex: "#346094")
         textView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        textView.textAlignment = .center
         clipsToBounds = false
         addSubview(backgroundUIImageView)
         addSubview(textView)
@@ -41,8 +42,15 @@ class PromptView: UIView, MGLCalloutView {
             return
         }
         view.addSubview(self)
-        textView.text = representedObject.title ?? ""
+        let title = representedObject.title! ?? ""
+        let subTitle = representedObject.subtitle! ?? ""
+        textView.text = subTitle.isEmpty ? title : "\(title)\n\n\(subTitle)"
+        let screenWidth = UIScreen.main.bounds.width
         textView.sizeToFit()
+        if textView.bounds.width > screenWidth / 2 {    // prevent the width too large.
+            let newSize = textView.sizeThatFits(CGSize(width: screenWidth / 2.0, height: CGFloat.greatestFiniteMagnitude))
+            textView.frame.size = newSize
+        }
         backgroundUIImageView.frame = textView.bounds
         backgroundUIImageView.frame.size.height += 20
         let originX = rect.origin.x + (rect.width / 2) - (backgroundUIImageView.bounds.width / 2) + 4

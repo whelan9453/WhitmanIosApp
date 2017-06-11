@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Mapbox
 
 // MARK: - Protocols
 
@@ -81,6 +82,9 @@ enum Asset: String {
     case enquirerMessagerLogo = "enquirerMessagerLogo"
     case userLocation = "yourCurrentPosition"
     case prompt = "prompt"
+    case regionW = "characterLocation"
+    case regionN = "neighborhoodLocation"
+    case regionF = "historicalLocation"
     
     var image: UIImage {
         return UIImage(named: self.rawValue)!
@@ -101,8 +105,68 @@ enum SegueIdentifier: String {
     case toSubmit = "ToSubmit"
 }
 
-enum AnnotationTitle: String {
-    case userLocation = "公告\n你這是什麼意思？\n給我翻譯翻譯！"
+enum TaskRegion {
+    case W1
+    case W2
+    case W3
+    case F
+    case N1
+    case HQ
+    
+    var point: MGLPointAnnotation {
+        let point = MGLPointAnnotation()
+        switch self {
+        case .W1:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70238, longitude: -73.99354)
+            point.title = "Eagle Warehouse"
+            point.subtitle = "Interview Whitman if he's there, or find out about the Brooklyn Eagle"
+        case .W2:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.7033, longitude: -73.99534)
+            point.title = "Fulton Ferry Landing"
+            point.subtitle = "Interview Whitman if he's there, or find out about the poem Leaves of Grass"
+        case .W3:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70397, longitude: -73.99293)
+            point.title = "St. Ann's Warehouse"
+            point.subtitle = "Interview Whitman if he's there, or find out about St. Ann's"
+        case .F:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.7045, longitude: -73.99037)
+            point.title = "Beach"
+            point.subtitle = "Interview Gabriel Harrison"
+        case .N1:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70309, longitude: -73.99138)
+            point.title = "66 Water Street"
+            point.subtitle = "Check out one of DUMBO's oldest buildings"
+        case .HQ:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.7014, longitude: -73.98645)
+            point.title = "Headquarter"
+            point.subtitle = "The headquarter of news"
+        }
+        return point
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .W1, .W2, .W3:
+            return UIImage(asset: .regionW)
+        case .F:
+            return UIImage(asset: .regionF)
+        case .N1:
+            return UIImage(asset: .regionN)
+        case .HQ:
+            return UIImage(asset: .userLocation)
+        }
+    }
+    
+    static func getRegion(with title: String) -> TaskRegion? {
+        guard let region = (all.filter { $0.point.title == title }).first else {
+            return nil
+        }
+        return region
+    }
+    
+    static var all: [TaskRegion] {
+        return [.W1, .W2, .W3, .F, .N1, .HQ]
+    }
 }
 
 struct MessageModel {
