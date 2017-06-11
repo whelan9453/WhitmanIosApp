@@ -14,6 +14,7 @@
 		8B00975F1EBF385B00DFB3A6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00975E1EBF385B00DFB3A6 /* TestViewController.swift */; };
 		8B47F9911EDD8F750082A790 /* RestartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F9901EDD8F750082A790 /* RestartViewController.swift */; };
 		8B47F9931EDD94580082A790 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F9921EDD94580082A790 /* HomeViewController.swift */; };
+		8B47F9951EE857E20082A790 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F9941EE857E20082A790 /* PromptView.swift */; };
 		8B4E2EAB1ED341E400EC8CAA /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E2EAA1ED341E400EC8CAA /* TutorialPageViewController.swift */; };
 		8B4E2EB41ED49B8600EC8CAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B4E2EAF1ED49B8600EC8CAA /* Assets.xcassets */; };
 		8B4E2EB51ED49B8600EC8CAA /* verlag-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8B4E2EB11ED49B8600EC8CAA /* verlag-black.otf */; };
@@ -43,6 +44,7 @@
 		8B00975E1EBF385B00DFB3A6 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8B47F9901EDD8F750082A790 /* RestartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartViewController.swift; sourceTree = "<group>"; };
 		8B47F9921EDD94580082A790 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8B47F9941EE857E20082A790 /* PromptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
 		8B4E2EAA1ED341E400EC8CAA /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		8B4E2EAF1ED49B8600EC8CAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B4E2EB11ED49B8600EC8CAA /* verlag-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "verlag-black.otf"; sourceTree = "<group>"; };
@@ -120,10 +122,19 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		8B47F9961EE8581C0082A790 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
 		8B4E2EAC1ED49B8000EC8CAA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B47F9941EE857E20082A790 /* PromptView.swift */,
 				8B4E2EAD1ED49B8000EC8CAA /* Cell */,
+				8B47F9961EE8581C0082A790 /* Xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -321,6 +332,7 @@
 				8BD7C7B01E9A57D4009D7D29 /* MenuViewController.swift in Sources */,
 				8B00975F1EBF385B00DFB3A6 /* TestViewController.swift in Sources */,
 				8B4E2EB91ED49BA600EC8CAA /* MenuCell.swift in Sources */,
+				8B47F9951EE857E20082A790 /* PromptView.swift in Sources */,
 				8B00975D1E9A72C300DFB3A6 /* ExtensionUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

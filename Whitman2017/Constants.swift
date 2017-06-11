@@ -79,6 +79,8 @@ enum Asset: String {
     case enquirerBossIcon = "bossHeadIconEnquirer"
     case timesMessagerLogo = "timesMessagerLogo"
     case enquirerMessagerLogo = "enquirerMessagerLogo"
+    case userLocation = "yourCurrentPosition"
+    case prompt = "prompt"
     
     var image: UIImage {
         return UIImage(named: self.rawValue)!
@@ -96,6 +98,10 @@ enum SegueIdentifier: String {
     case toAbout = "ToAbout"
     case toRestart = "ToRestart"
     case toSubmit = "ToSubmit"
+}
+
+enum AnnotationTitle: String {
+    case userLocation = "公告\n你這是什麼意思？\n給我翻譯翻譯！"
 }
 
 struct MessageModel {
