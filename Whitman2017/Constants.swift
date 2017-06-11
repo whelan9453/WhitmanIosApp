@@ -23,14 +23,79 @@ protocol StatePropertiesProtocol {
 
 // MARK: - Events and states in schema
 
+
+/// 3種case: boss回答純文字（String）、boss隨機回答文字（[String]）、boos回答有選項的文字（[String: Any]）
+// case makeChoices: return ["message": "tell me what's you choice?", "options": ["OP1", "OP2", "OP3"]]
+// options這個key中是要放要顯示在泡泡裡要給user選的按鈕（動態產生）
+
 /// W1 Location state
 enum W1State: StatePropertiesProtocol {
-    
-    /// 3種case: boss回答純文字（String）、boss隨機回答文字（[String]）、boos回答有選項的文字（[String: Any]）
-    // case makeChoices: return ["message": "tell me what's you choice?", "options": ["OP1", "OP2", "OP3"]]
-    // options這個key中是要放要顯示在泡泡裡要給user選的按鈕（動態產生）
+    case introduction
     var message: Any {
+        switch self {
+        case .introduction:
+            return "Hey, %@.\nTook you long enough.\nIs Whitman there?"
+        }
         return ""
+    }
+    var retryLimit: Int? {
+        return nil
+    }
+}
+
+enum W2State: StatePropertiesProtocol {
+    case introduction
+    // interview path
+    case interviewSetup
+    case interviewQ1
+    case interviewQ2
+    case interviewQ3
+    case interviewQ4
+    case interviewQ5
+    case interviewEnd
+    case interviewHint1
+    case interviewHint2
+    case interviewHint3
+    case interviewHint4
+    case interviewHint5
+    case interviewHint6
+    
+    // history path
+    case historySetup
+    
+    var message: Any {
+        switch self {
+        case .introduction:
+            return "Hey, %@.\nTook you long enough.\nIs Whitman there?"
+        case .interviewSetup:
+            return "Whitman was editor of The Brooklyn Eagle, which used to be on this spot. That's probably why he's hanging out here.\nGo interview him. I'll send a list of questions.\nAre you ready?"
+        case .interviewQ1:
+            return ["message": "What year did he become editor?\n1. 1840\n2. 1846\n3. 1900", "options": ["1840", "1846", "1900"]]
+        case .interviewQ2:
+            return "Ask him what he liked best about the job.\nReady for the next question?"
+        case .interviewQ3:
+            return ["message": "Why did he stop being editor? Text me the number.\n1. He was fired\n2. He quit\n3. He ran for mayor", "options": ["He was fired", "He quit", "He ran for mayor"]]
+        case .interviewQ4:
+            return "Why was he fired? Send me a short sentence with the reason, 15 words max."
+        case .interviewQ5:
+            return "Now take a photo of him and send it to me."
+        case .interviewEnd:
+            return "Nice job with the interview!\nKeep it up, and you could get a Pulitzer."
+        case .interviewHint1:
+            return "Don't get cold feet! I'll give you all the questions you need to ask. Ready now?"
+        case .interviewHint2:
+            return ["message": "Stay focused!\nAsk the questions I send you, and then send me back the answers.\nWhat was the year: 1, 2, or 3?", "options": ["1", "2", "3"]]
+        case .interviewHint3:
+            return "Stop wasting time! Ready for the next question?"
+        case .interviewHint4:
+            return ["message": "Are you sure about that?", "options": ["He was fired", "He quit", "He ran for mayor"]]
+        case .interviewHint5:
+            return "You do know how to write, don't you? Send me a short sentence about why he was fired."
+        case .interviewHint6:
+            return "Tap the camera icon, take a photo of Whitman, and send it to me."
+        default:
+            return ""
+        }
     }
     var retryLimit: Int? {
         return nil
@@ -84,7 +149,7 @@ enum Asset: String {
     case prompt = "prompt"
     case regionW = "characterLocation"
     case regionN = "neighborhoodLocation"
-    case regionF = "historicalLocation"
+    case regionH = "historicalLocation"
     
     var image: UIImage {
         return UIImage(named: self.rawValue)!
@@ -146,10 +211,10 @@ enum TaskRegion {
     
     var image: UIImage {
         switch self {
-        case .W1, .W2, .W3:
+        case .W1, .W2, .W3, .F:
             return UIImage(asset: .regionW)
-        case .F:
-            return UIImage(asset: .regionF)
+//        case .H4:
+//            return UIImage(asset: .regionH)
         case .N1:
             return UIImage(asset: .regionN)
         case .HQ:

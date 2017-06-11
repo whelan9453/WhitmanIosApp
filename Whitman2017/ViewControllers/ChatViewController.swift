@@ -8,6 +8,7 @@
 
 import UIKit
 import NextGrowingTextView
+import SwiftyStateMachine
 
 class ChatViewController: UIViewController {
     @IBOutlet weak var newspaperImageView: UIImageView!
@@ -21,11 +22,10 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     weak var delegate: ChatViewControllerDelegate?
-    var messages: [MessageModel] = [MessageModel(id: 0, text: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", type: .opponent),
-                                    MessageModel(id: 1, text: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.")]
+    var messages: [MessageModel] = []
     var isExpanding: Bool = false
     var messagesWidth: [CGFloat] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImageView.rounding()
@@ -38,6 +38,7 @@ class ChatViewController: UIViewController {
         
         inputTextView.maxNumberOfLines = 4
         inputTextView.textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        inputTextView.textView.delegate = self
         
         guard let roleString = UserDefaults.standard.value(forKey: Keys.role) as? String,
             let role = PlayerRole(rawValue: roleString) else {
@@ -48,8 +49,42 @@ class ChatViewController: UIViewController {
         dialogView.layer.cornerRadius = dialogView.bounds.height / 2
         dialogView.layer.borderWidth = 2
         dialogView.layer.borderColor = UIColor(hex: "#c8c8cd").cgColor
+        
+        // assume current in w2 region
+        setupMachine(with: .W2)   // base on location
     }
-
+    
+    func setupMachine(with schema: Schemas) {
+        switch schema {
+        case .W1:
+            messages.append(MessageModel(id: messages.count, text: String(format: Machines.W1.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
+            Machines.W1.didTransitionCallback = { [unowned self] (oldState, event, newState) in
+                self.stateChangedAction(newState.message)
+            }
+        case .W2:
+            messages.append(MessageModel(id: messages.count, text: String(format: Machines.W2.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
+            Machines.W2.didTransitionCallback = { [unowned self] (oldState, event, newState) in
+                self.stateChangedAction(newState.message)
+            }
+        }
+    }
+    
+    func stateChangedAction(_ message: Any) {
+        switch message {
+        case is String:
+            self.messages.append(MessageModel(id: self.messages.count, text: message as? String, image: nil, type: .opponent))
+        case is [String: Any]:
+            self.messages.append(MessageModel(id: self.messages.count, text: (message as! [String: Any])["message"] as? String, image: nil, type: .opponent))
+        case is [String]:
+            let randomIndex = Int(arc4random_uniform(UInt32((message as! [String]).count)))
+            self.messages.append(MessageModel(id: self.messages.count, text: (message as! [String])[randomIndex], image: nil, type: .opponent))
+        default:
+            print("should no be here.")
+            break
+        }
+        refreshCollectionView()
+    }
+    
     func keyboardWillHide(_ sender: Notification) {
         if let userInfo = (sender as NSNotification).userInfo {
             if let _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
@@ -70,6 +105,41 @@ class ChatViewController: UIViewController {
                 })
             }
         }
+    }
+    
+    func refreshCollectionView(_ completedAction: (() -> ())? = nil) {
+        collectionView.performBatchUpdates({
+            self.collectionView.insertSections(IndexSet(integer: self.messages.count - 1))
+        }, completion: { [unowned self] (_) in
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: self.messages.count - 1), at: .bottom, animated: true)
+            self.resizeCollectionView()
+            if let completedAction = completedAction {
+                completedAction()
+            }
+        })
+    }
+    
+    func resizeCollectionView() {
+        collectionView.layoutIfNeeded()
+        let height = collectionView.frame.maxY + collectionView.contentSize.height + profileImageView.bounds.height / 2
+        if Constants.chatVCMaxHeight < height {
+            delegate?.reSizeHeight(Constants.chatVCMaxHeight)
+        } else {
+            delegate?.reSizeHeight(height)
+        }
+    }
+    
+    func showActionSheet(with options: [String]) {
+        let VC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        options.enumerated().forEach { (index, option) in
+            let option = UIAlertAction(title: option, style: option == "No" ? .destructive : .default, handler: { [unowned self] (_) in
+                self.messages.append(MessageModel(id: self.messages.count, text: option, type: .mine))
+                self.refreshCollectionView { Machines.W2.handleEvent(.options(index)) }
+            })
+            VC.addAction(option)
+        }
+        VC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(VC, animated: true)
     }
     
     @IBAction func tapViewAction(_ sender: UITapGestureRecognizer) {
@@ -95,13 +165,7 @@ class ChatViewController: UIViewController {
             collectionViewBottomConstraint.constant = 0
             collectionView.dataSource = self
             collectionView.reloadData()
-            collectionView.layoutIfNeeded()
-            let height = collectionView.frame.maxY + collectionView.contentSize.height
-            if Constants.chatVCMaxHeight < height {
-                delegate.reSizeHeight(Constants.chatVCMaxHeight)
-            } else {
-                delegate.reSizeHeight(height)
-            }
+            resizeCollectionView()
         } else {
             collectionViewBottomConstraint.constant = -messageView.bounds.height
             collectionView.dataSource = nil
@@ -116,13 +180,13 @@ class ChatViewController: UIViewController {
     @IBAction func sendAction(_ sender: UIButton) {
         if !inputTextView.textView.text.isEmpty {
             messages.append(MessageModel(id: messages.count, text: inputTextView.textView.text, type: .mine))
-            collectionView.performBatchUpdates({ 
-                self.collectionView.insertSections(IndexSet(integer: self.messages.count - 1))
-            }, completion: { (_) in
-                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: self.messages.count - 1), at: .bottom, animated: true)
-            })
+            refreshCollectionView()
             inputTextView.textView.text = ""
             view.endEditing(true)
+            
+            // check current schema and decide initialize state (check user location) assume w2
+            // if xxx == w2 statement only
+            
         }
     }
     
@@ -180,7 +244,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
         let spacing = UIScreen.main.bounds.width * 0.2
         if message.type == .mine {
             if let width = message.width {
-                let newSpacing = width > spacing ? UIScreen.main.bounds.width - width : spacing
+                let newSpacing = width > spacing ? UIScreen.main.bounds.width - width : UIScreen.main.bounds.width - spacing
                 return UIEdgeInsets(top: Constants.messageSpacing, left: newSpacing, bottom: 0, right: Constants.messageSpacing)
             } else {
                 return UIEdgeInsets(top: Constants.messageSpacing, left: spacing, bottom: 0, right: Constants.messageSpacing)
@@ -191,4 +255,23 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+extension ChatViewController: UITextViewDelegate {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        // check machine
+        switch Machines.W2.state {
+        case .introduction, .interviewSetup, .interviewQ2:
+            showActionSheet(with: ["Yes", "No"])
+            return false
+        case .interviewQ1, .interviewQ3, .interviewHint2, .interviewHint4:
+            guard let options = (Machines.W2.state.message as! [String: Any])["options"] as? [String] else {
+                return false
+            }
+            showActionSheet(with: options)
+            return false
+        case .interviewQ5:
+            return false
+        default:
+            return true
+        }
+    }
+}

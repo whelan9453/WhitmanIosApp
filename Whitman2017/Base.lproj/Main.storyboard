@@ -696,7 +696,7 @@ YOU WANT TO PLAY:</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yBL-Mi-r3f" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dQu-Rt-Xo5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dQu-Rt-Xo5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -793,7 +793,7 @@ YOU WANT TO PLAY:</string>
             <objects>
                 <navigationController storyboardIdentifier="GameStart" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7jV-Ck-lpC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WKk-1S-KHQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WKk-1S-KHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -28,6 +28,7 @@
 		8B765B6B1E9A6BE600D2B24F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765B6A1E9A6BE600D2B24F /* ChatViewController.swift */; };
 		8B765B6D1E9A6C1300D2B24F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765B6C1E9A6C1300D2B24F /* MainViewController.swift */; };
 		8BD7C7B01E9A57D4009D7D29 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C7AF1E9A57D4009D7D29 /* MenuViewController.swift */; };
+		8BFBC6DD1EED6970008C52B2 /* Schemas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6DC1EED6970008C52B2 /* Schemas.swift */; };
 		B8F350C9A846CE75C0C92E9E /* Pods_Whitman2017.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22ADAFFD8839AE63FF329225 /* Pods_Whitman2017.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		8B765B6A1E9A6BE600D2B24F /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8B765B6C1E9A6C1300D2B24F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8BD7C7AF1E9A57D4009D7D29 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		8BFBC6DC1EED6970008C52B2 /* Schemas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schemas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				8B002FDA1E9A4FD700A46450 /* LaunchScreen.storyboard */,
 				8B002FDD1E9A4FD700A46450 /* Info.plist */,
 				8B4E2EBC1EDBCAC000EC8CAA /* Constants.swift */,
+				8BFBC6DC1EED6970008C52B2 /* Schemas.swift */,
 			);
 			path = Whitman2017;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				8B4E2EBD1EDBCAC000EC8CAA /* Constants.swift in Sources */,
 				8BD7C7B01E9A57D4009D7D29 /* MenuViewController.swift in Sources */,
 				8B00975F1EBF385B00DFB3A6 /* TestViewController.swift in Sources */,
+				8BFBC6DD1EED6970008C52B2 /* Schemas.swift in Sources */,
 				8B4E2EB91ED49BA600EC8CAA /* MenuCell.swift in Sources */,
 				8B47F9951EE857E20082A790 /* PromptView.swift in Sources */,
 				8B00975D1E9A72C300DFB3A6 /* ExtensionUtil.swift in Sources */,

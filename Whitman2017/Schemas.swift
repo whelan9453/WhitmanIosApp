@@ -1,0 +1,92 @@
+//
+//  Schemas.swift
+//  Whitman2017
+//
+//  Created by Toby Hsu on 2017/6/11.
+//  Copyright © 2017年 Orav. All rights reserved.
+//
+
+import Foundation
+import SwiftyStateMachine
+
+struct Machines {
+    static let W1 = StateMachine(schema: Schemas.W1.schema as! StateMachineSchema<W1State, UserEvent, Void>, subject: ())
+    static let W2 = StateMachine(schema: Schemas.W2.schema as! StateMachineSchema<W2State, UserEvent, Void>, subject: ())
+}
+
+enum Schemas {
+    case W1
+    case W2
+    
+    var schema: Any {
+        switch self {
+        case .W1:
+            return StateMachineSchema<W1State, UserEvent, Void>(initialState: .introduction) { (state, event) -> (W1State, ((Void) -> ())?)? in
+                return nil
+            }
+        case .W2:
+            return StateMachineSchema<W2State, UserEvent, Void>(initialState: .introduction) { (state, event) -> (W2State, ((Void) -> ())?)? in
+                switch state {
+                case .introduction:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.interviewSetup, nil) : (.historySetup, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewSetup:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.interviewQ1, nil) : (.interviewHint1, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewQ1, .interviewHint2:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.interviewQ2, nil) : (.interviewHint2, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewQ2:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.interviewQ3, nil) : (.interviewHint3, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewQ3, .interviewHint4:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.interviewQ4, nil) : (.interviewHint4, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewQ4:
+                    switch event {
+                    case let .statement(text):
+                        return !text.isEmpty ? (.interviewQ5, nil) : (.interviewHint5, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewQ5:
+                    switch event {
+                    case let .photo(image):
+                        return (.interviewEnd, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .interviewEnd:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.interviewQ1, nil) : nil
+                    default:
+                        return (state, nil)
+                    }
+                default:
+                    return nil
+                }
+            }
+        }
+    }
+}
