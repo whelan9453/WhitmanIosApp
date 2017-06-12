@@ -34,7 +34,7 @@ enum Schemas {
                     default:
                         return (state, nil)
                     }
-                case .interviewSetup:
+                case .interviewSetup, .interviewHint1:
                     switch event {
                     case let .options(answer):
                         return answer == 0 ? (.interviewQ1, nil) : (.interviewHint1, nil)
@@ -48,7 +48,7 @@ enum Schemas {
                     default:
                         return (state, nil)
                     }
-                case .interviewQ2:
+                case .interviewQ2, .interviewHint3:
                     switch event {
                     case let .options(answer):
                         return answer == 0 ? (.interviewQ3, nil) : (.interviewHint3, nil)
@@ -62,7 +62,7 @@ enum Schemas {
                     default:
                         return (state, nil)
                     }
-                case .interviewQ4:
+                case .interviewQ4, .interviewHint5:
                     switch event {
                     case let .statement(text):
                         return !text.isEmpty ? (.interviewQ5, nil) : (.interviewHint5, nil)
@@ -80,6 +80,34 @@ enum Schemas {
                     switch event {
                     case let .options(answer):
                         return answer == 0 ? (.interviewQ1, nil) : nil
+                    default:
+                        return (state, nil)
+                    }
+                case .historySetup, .historyHint1:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.historyQ1, nil) : (.historyHint1, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .historyQ1, .historyHint2:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.historyQ2, nil) : (.historyHint2, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .historyQ2, .historyHint3:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.historyQ3, nil) : (.historyHint3, nil)
+                    default:
+                        return (state, nil)
+                    }
+                case .historyQ3, .historyHint4:
+                    switch event {
+                    case let .options(answer):
+                        return answer == 0 ? (.historyEnd, nil) : (.historyHint4, nil)
                     default:
                         return (state, nil)
                     }

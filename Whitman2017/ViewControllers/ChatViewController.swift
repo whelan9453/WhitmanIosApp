@@ -65,6 +65,9 @@ class ChatViewController: UIViewController {
             messages.append(MessageModel(id: messages.count, text: String(format: Machines.W2.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
             Machines.W2.didTransitionCallback = { [unowned self] (oldState, event, newState) in
                 self.stateChangedAction(newState.message)
+                if newState == .historyEnd {
+                    
+                }
             }
         }
     }

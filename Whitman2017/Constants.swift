@@ -62,11 +62,23 @@ enum W2State: StatePropertiesProtocol {
     
     // history path
     case historySetup
+    case historyQ1
+    case historyQ2
+    case historyQ3
+    case historyEnd
+    case historyHint1
+    case historyHint2
+    case historyHint3
+    case historyHint4
     
     var message: Any {
+        guard let string = UserDefaults.standard.string(forKey: Keys.role),
+            let role = PlayerRole(rawValue: string) else {
+            return ""
+        }
         switch self {
         case .introduction:
-            return "Hey, %@.\nTook you long enough.\nIs Whitman there?"
+            return role == .dumboEnquirer ? "Hey, %@.\nTook you long enough.\nIs Whitman there?" : ""
         case .interviewSetup:
             return "Whitman was editor of The Brooklyn Eagle, which used to be on this spot. That's probably why he's hanging out here.\nGo interview him. I'll send a list of questions.\nAre you ready?"
         case .interviewQ1:
@@ -93,6 +105,24 @@ enum W2State: StatePropertiesProtocol {
             return "You do know how to write, don't you? Send me a short sentence about why he was fired."
         case .interviewHint6:
             return "Tap the camera icon, take a photo of Whitman, and send it to me."
+        case .historySetup:
+            return "Whitman was editor of The Brooklyn Eagle, which used to be on this spot.\nDo you see a sign with info about Whitman and The Brooklyn Eagle?"
+        case .historyQ1:
+            return ["message": "What year did he become editor?\n1. 1840\n2. 1846\n3. 1900", "options": ["1840", "1846", "1900"]]
+        case .historyQ2:
+            return ["message": "Why did he stop being editor?\n1. He was fired\n2. He quit\n3. He ran for mayor", "options": ["He was fired", "He quit", " He ran for mayor"]]
+        case .historyQ3:
+            return "Why was he fired? Send me a short sentence with the reason, 15 words max."
+        case .historyEnd:
+            return "Nice reporting!\nKeep it up, and you could get a Pulitzer."
+        case .historyHint1:
+            return "Look on both sides of the archway. I bet there's a sign about Whitman there.\nDo you see it?"
+        case .historyHint2:
+            return ["message": "Look on the sign. What was the year: 1, 2, or 3?", "options": ["1", "2", "3"]]
+        case .historyHint3:
+            return ["message": "Look on the sign. Is the information there?\nWhy did he leave the job: 1, 2, or 3?", "options": ["1", "2", "3"]]
+        case .historyHint4:
+            return "Uh, hello? I'm waiting for your response. Send me a short sentence about why he got fired."
         default:
             return ""
         }
