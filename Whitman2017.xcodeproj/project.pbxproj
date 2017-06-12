@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		798942651EED6D3A0065AA7B /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798942641EED6D3A0065AA7B /* Geotification.swift */; };
 		8B002FD21E9A4FD700A46450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B002FD11E9A4FD700A46450 /* AppDelegate.swift */; };
 		8B002FD71E9A4FD700A46450 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B002FD51E9A4FD700A46450 /* Main.storyboard */; };
 		8B002FDC1E9A4FD700A46450 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B002FDA1E9A4FD700A46450 /* LaunchScreen.storyboard */; };
@@ -36,6 +37,7 @@
 		22ADAFFD8839AE63FF329225 /* Pods_Whitman2017.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Whitman2017.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C63A79C248D574FCFEE5363 /* Pods-Whitman2017.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whitman2017.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whitman2017/Pods-Whitman2017.release.xcconfig"; sourceTree = "<group>"; };
 		44397A952C11307ED6720CE2 /* Pods-Whitman2017.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whitman2017.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Whitman2017/Pods-Whitman2017.debug.xcconfig"; sourceTree = "<group>"; };
+		798942641EED6D3A0065AA7B /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Geotification.swift; path = Utils/Geotification.swift; sourceTree = "<group>"; };
 		8B002FCE1E9A4FD700A46450 /* Whitman2017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whitman2017.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B002FD11E9A4FD700A46450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B002FD61E9A4FD700A46450 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				8B4E2EAC1ED49B8000EC8CAA /* View */,
 				8B00975B1E9A72AF00DFB3A6 /* Utils */,
 				8BD7C7AE1E9A57D4009D7D29 /* ViewControllers */,
+				798942641EED6D3A0065AA7B /* Geotification.swift */,
 				8B002FD11E9A4FD700A46450 /* AppDelegate.swift */,
 				8B002FD51E9A4FD700A46450 /* Main.storyboard */,
 				8B002FDA1E9A4FD700A46450 /* LaunchScreen.storyboard */,
@@ -325,6 +328,7 @@
 				8B765B6D1E9A6C1300D2B24F /* MainViewController.swift in Sources */,
 				8B002FD21E9A4FD700A46450 /* AppDelegate.swift in Sources */,
 				8B4E2EBB1EDA9B4D00EC8CAA /* ChatCell.swift in Sources */,
+				798942651EED6D3A0065AA7B /* Geotification.swift in Sources */,
 				8B4E2EC11EDD3C8500EC8CAA /* RegisterViewController.swift in Sources */,
 				8B4E2EAB1ED341E400EC8CAA /* TutorialPageViewController.swift in Sources */,
 				8B47F9931EDD94580082A790 /* HomeViewController.swift in Sources */,
