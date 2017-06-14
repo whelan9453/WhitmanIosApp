@@ -141,7 +141,7 @@ enum UserEvent {
 
 // MARK: - DEFINE
 
-enum MessageType {
+enum MessageType: Int {
     case mine
     case opponent
     
@@ -293,6 +293,20 @@ struct MessageModel {
         self.text = text
         self.image = image
         self.type = type
+    }
+    
+    func toDict() -> [String: Any] {
+        var dict: [String: Any] = ["id": id, "type": type.rawValue]
+        if let image = image, let data = UIImageJPEGRepresentation(image, 0.9) {
+            dict.updateValue(data, forKey: "imageData")
+        }
+        if let text = text {
+            dict.updateValue(text, forKey: "text")
+        }
+        if let width = width {
+            dict.updateValue(width, forKey: "width")
+        }
+        return dict
     }
 }
 

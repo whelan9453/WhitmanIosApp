@@ -6,8 +6,6 @@
 //  Copyright © 2017年 Orav. All rights reserved.
 //
 
-// messages用realm紀錄
-
 import UIKit
 import NextGrowingTextView
 import SwiftyStateMachine
@@ -61,18 +59,23 @@ class ChatViewController: UIViewController {
     func setupMachine(_ notif: Notification) {
         guard let userInfo = notif.userInfo, let taskRegion = userInfo["taskRegion"] as? TaskRegion else {
             return
-        }        
+        }
+        self.taskRegion = taskRegion
         switch taskRegion {
         case .W1:
-            messages = []
-            messages.append(MessageModel(id: messages.count, text: String(format: Machines.W1.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
+            preloadMessages()
+            if messages.isEmpty {
+                addMessage(model: MessageModel(id: messages.count, text: String(format: Machines.W1.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
+            }
             Machines.W1.didTransitionCallback = { [unowned self] (oldState, event, newState) in
                 UserDefaults.standard.set(newState.rawValue, forKey: Keys.stateW1)
                 self.stateChangedAction(newState.message)
             }
         case .W2:
-            messages = []
-            messages.append(MessageModel(id: messages.count, text: String(format: Machines.W2.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
+            preloadMessages()
+            if messages.isEmpty {
+                addMessage(model: MessageModel(id: messages.count, text: String(format: Machines.W2.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
+            }
             Machines.W2.didTransitionCallback = { [unowned self] (oldState, event, newState) in
                 UserDefaults.standard.set(newState.rawValue, forKey: Keys.stateW2)
                 self.stateChangedAction(newState.message)
@@ -92,17 +95,52 @@ class ChatViewController: UIViewController {
     func stateChangedAction(_ message: Any) {
         switch message {
         case is String:
-            self.messages.append(MessageModel(id: self.messages.count, text: message as? String, image: nil, type: .opponent))
+            addMessage(model: MessageModel(id: self.messages.count, text: message as? String, image: nil, type: .opponent))
         case is [String: Any]:
-            self.messages.append(MessageModel(id: self.messages.count, text: (message as! [String: Any])["message"] as? String, image: nil, type: .opponent))
+            addMessage(model: MessageModel(id: self.messages.count, text: (message as! [String: Any])["message"] as? String, image: nil, type: .opponent))
         case is [String]:
             let randomIndex = Int(arc4random_uniform(UInt32((message as! [String]).count)))
-            self.messages.append(MessageModel(id: self.messages.count, text: (message as! [String])[randomIndex], image: nil, type: .opponent))
+            addMessage(model: MessageModel(id: self.messages.count, text: (message as! [String])[randomIndex], image: nil, type: .opponent))
         default:
             print("should no be here.")
             break
         }
         refreshCollectionView()
+    }
+    
+    func preloadMessages() {
+        guard let taskRegion = taskRegion else {
+            return
+        }
+        if let currentDict = UserDefaults.standard.value(forKey: taskRegion.messageKey) as? [[String: Any]] {
+            if messages.isEmpty {   // if reenter some location
+                let sortedDict = currentDict.sorted { return ($0.0["id"] as! Int) < ($0.1["id"] as! Int) }
+                sortedDict.forEach({ (dict) in
+                    var model = MessageModel(id: dict["id"] as! Int, text: dict["text"] as? String, image: nil, type: MessageType(rawValue: dict["type"] as! Int)!)
+                    if let imageData = dict["imageData"] as? Data {
+                        model.image = UIImage(data: imageData)
+                    }
+                    model.width = dict["width"] as? CGFloat ?? nil
+                    messages.append(model)
+                })
+            }
+        } else {
+            messages = []
+        }
+    }
+    
+    func addMessage(model: MessageModel) {
+        guard let taskRegion = taskRegion else {
+            return
+        }
+        if let currentDict = UserDefaults.standard.value(forKey: taskRegion.messageKey) as? [[String: Any]] {
+            var newDict = currentDict
+            newDict.append(model.toDict())
+            UserDefaults.standard.set(newDict, forKey: taskRegion.messageKey)
+        } else {
+            UserDefaults.standard.set([model.toDict()], forKey: taskRegion.messageKey)
+        }
+        messages.append(model)
     }
     
     func keyboardWillHide(_ sender: Notification) {
@@ -153,7 +191,7 @@ class ChatViewController: UIViewController {
         let VC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         options.enumerated().forEach { (index, option) in
             let option = UIAlertAction(title: option, style: option == "No" ? .destructive : .default, handler: { [unowned self] (_) in
-                self.messages.append(MessageModel(id: self.messages.count, text: option, type: .mine))
+                self.addMessage(model: MessageModel(id: self.messages.count, text: option, type: .mine))
                 self.refreshCollectionView { Machines.W2.handleEvent(.options(index)) }
             })
             VC.addAction(option)
@@ -199,7 +237,7 @@ class ChatViewController: UIViewController {
     
     @IBAction func sendAction(_ sender: UIButton) {
         if !inputTextView.textView.text.isEmpty {
-            messages.append(MessageModel(id: messages.count, text: inputTextView.textView.text, type: .mine))
+            addMessage(model: MessageModel(id: messages.count, text: inputTextView.textView.text, type: .mine))
             refreshCollectionView()
             inputTextView.textView.text = ""
             view.endEditing(true)
