@@ -21,11 +21,13 @@ enum Schemas {
     var schema: Any {
         switch self {
         case .W1:
-            return StateMachineSchema<W1State, UserEvent, Void>(initialState: .introduction) { (state, event) -> (W1State, ((Void) -> ())?)? in
+            let lastState = UserDefaults.standard.value(forKey: Keys.stateW1) as? Int ?? 0
+            return StateMachineSchema<W1State, UserEvent, Void>(initialState: W1State(rawValue: lastState)!) { (state, event) -> (W1State, ((Void) -> ())?)? in
                 return nil
             }
         case .W2:
-            return StateMachineSchema<W2State, UserEvent, Void>(initialState: .introduction) { (state, event) -> (W2State, ((Void) -> ())?)? in
+            let lastState = UserDefaults.standard.value(forKey: Keys.stateW2) as? Int ?? 0
+            return StateMachineSchema<W2State, UserEvent, Void>(initialState: W2State(rawValue: lastState)!) { (state, event) -> (W2State, ((Void) -> ())?)? in
                 switch state {
                 case .introduction:
                     switch event {

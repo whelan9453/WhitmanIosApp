@@ -57,14 +57,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        if region is CLCircularRegion {
+        if region is CLCircularRegion && region.identifier != "MGLLocationManagerRegionIdentifier.fence.center" {
             handleEvent(forRegion: region)
+            guard let taskRegion = TaskRegion.getRegion(with: region.identifier) else {
+                return
+            }
+            NotificationCenter.default.post(name: Notif.machineSwitch, object: nil, userInfo: ["taskRegion": taskRegion])
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if region is CLCircularRegion {
+        if region is CLCircularRegion && region.identifier != "MGLLocationManagerRegionIdentifier.fence.center" {
             handleEvent(forRegion: region)
+            NotificationCenter.default.post(name: Notif.machineShutdown, object: nil)
         }
     }
 }

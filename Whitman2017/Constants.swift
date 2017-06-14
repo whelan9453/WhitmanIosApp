@@ -29,7 +29,7 @@ protocol StatePropertiesProtocol {
 // options這個key中是要放要顯示在泡泡裡要給user選的按鈕（動態產生）
 
 /// W1 Location state
-enum W1State: StatePropertiesProtocol {
+enum W1State: Int, StatePropertiesProtocol {
     case introduction
     var message: Any {
         switch self {
@@ -43,7 +43,7 @@ enum W1State: StatePropertiesProtocol {
     }
 }
 
-enum W2State: StatePropertiesProtocol {
+enum W2State: Int, StatePropertiesProtocol {
     case introduction
     // interview path
     case interviewSetup
@@ -252,6 +252,23 @@ enum TaskRegion {
         }
     }
     
+    var messageKey: String {
+        switch self {
+        case .W1:
+            return "W1"
+        case .W2:
+            return "W2"
+        case .W3:
+            return "W3"
+        case .F:
+            return "F"
+        case .N1:
+            return "N1"
+        case .HQ:
+            return "HQ"
+        }
+    }
+    
     static func getRegion(with title: String) -> TaskRegion? {
         guard let region = (all.filter { $0.point.title == title }).first else {
             return nil
@@ -288,11 +305,18 @@ struct Constants {
     
 }
 
+struct Notif {
+    static let machineSwitch = Notification.Name("whitman2017.machine.switch")
+    static let machineShutdown = Notification.Name("whitman2017.machine.shutdown")
+}
+
 // UserDefault
 struct Keys {
     static let role = "Role"
     static let email = "Email"
     static let userName = "UserName"
+    static let stateW1 = "stateW1"
+    static let stateW2 = "stateW2"
 }
 
 //TutorialIdentifiers can be found in Main.storyboard

@@ -30,6 +30,8 @@
 		8B765B6D1E9A6C1300D2B24F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765B6C1E9A6C1300D2B24F /* MainViewController.swift */; };
 		8BD7C7B01E9A57D4009D7D29 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C7AF1E9A57D4009D7D29 /* MenuViewController.swift */; };
 		8BFBC6DD1EED6970008C52B2 /* Schemas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6DC1EED6970008C52B2 /* Schemas.swift */; };
+		8BFBC6DF1EEEE9DD008C52B2 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBC6DE1EEEE9DD008C52B2 /* Location.gpx */; };
+		8BFBC6E01EEEEBF4008C52B2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B002FDD1E9A4FD700A46450 /* Info.plist */; };
 		B8F350C9A846CE75C0C92E9E /* Pods_Whitman2017.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22ADAFFD8839AE63FF329225 /* Pods_Whitman2017.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,7 @@
 		8B765B6C1E9A6C1300D2B24F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8BD7C7AF1E9A57D4009D7D29 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8BFBC6DC1EED6970008C52B2 /* Schemas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schemas.swift; sourceTree = "<group>"; };
+		8BFBC6DE1EEEE9DD008C52B2 /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,7 @@
 			children = (
 				8B4E2EAF1ED49B8600EC8CAA /* Assets.xcassets */,
 				8B4E2EB01ED49B8600EC8CAA /* Fonts */,
+				8BFBC6DE1EEEE9DD008C52B2 /* Location.gpx */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -261,7 +265,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFBC6E01EEEEBF4008C52B2 /* Info.plist in Resources */,
 				8B002FDC1E9A4FD700A46450 /* LaunchScreen.storyboard in Resources */,
+				8BFBC6DF1EEEE9DD008C52B2 /* Location.gpx in Resources */,
 				8B4E2EB61ED49B8600EC8CAA /* verlag-bold.otf in Resources */,
 				8B4E2EB41ED49B8600EC8CAA /* Assets.xcassets in Resources */,
 				8B4E2EB51ED49B8600EC8CAA /* verlag-black.otf in Resources */,

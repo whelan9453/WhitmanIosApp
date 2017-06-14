@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
         mapView = MGLMapView(frame: mapContainerView.bounds)
         mapView.styleURL = URL(string: "mapbox://styles/eward-esi/cj2wbd9g200052sp0hk2miufu")
         mapView.delegate = self
-        mapView.showsUserLocation = false
+        mapView.showsUserLocation = true
         mapView.zoomLevel = 18
         mapView.compassView.isHidden = true
         mapContainerView.addSubview(mapView)
@@ -47,6 +47,11 @@ class MainViewController: UIViewController {
     func setupTaskPoint() {
         let pointAnnotations = TaskRegion.all.map { $0.point }
         mapView.addAnnotations(pointAnnotations)
+        // geofencing setting
+        pointAnnotations.forEach { (annotation) in
+            let region = CLCircularRegion(center: annotation.coordinate, radius: 50.0, identifier: annotation.title!)
+            locationManager.startMonitoring(for: region)
+        }
         
     }
     
@@ -55,34 +60,6 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
-    
-    //Core Location requires each geofence to be represented as a CLCircularRegion instance before it can be registered for monitoring.
-    func region(withGeotification geotification: Geotification) -> CLCircularRegion {
-        let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
-        region.notifyOnEntry = (geotification.eventType == .onEntry)
-        region.notifyOnExit = (geotification.eventType == .onExit)
-        return region
-    }
-    
-    func startMonitoring(geotification: Geotification) {
-        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
-            return
-        }
-        if CLLocationManager.authorizationStatus() != .authorizedAlways {
-            showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
-        }
-        let region = self.region(withGeotification: geotification)
-        locationManager.startMonitoring(for: region)
-    }
-    
-    func stopMonitoring(geotification: Geotification) {
-        for region in locationManager.monitoredRegions {
-            guard let circularRegion = region as? CLCircularRegion, circularRegion.identifier == geotification.identifier else { continue }
-            locationManager.stopMonitoring(for: circularRegion)
-        }
-    }
-
 }
 
 extension MainViewController: CLLocationManagerDelegate {
@@ -105,14 +82,9 @@ extension MainViewController: ChatViewControllerDelegate {
 }
 
 extension MainViewController: MGLMapViewDelegate {
-    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
-        print("MGLAnnotationImage")
-        return nil
-    }
-    
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-//        mapView.showsUserLocation = true
-//        mapView.userTrackingMode = .followWithHeading
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .followWithHeading
         return true
     }
     
@@ -120,7 +92,6 @@ extension MainViewController: MGLMapViewDelegate {
         if annotation.responds(to: #selector(getter: UIPreviewActionItem.title)) {
             return PromptView(representedObject: annotation)
         }
-        
         return nil
     }
     
@@ -144,15 +115,8 @@ extension MainViewController: MGLMapViewDelegate {
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
-        mapView.setCenter(TaskRegion.HQ.point.coordinate, animated: true)
-//        mapView.setCenter(mapView.userLocation!.coordinate, animated: false)
-//        mapView.userTrackingMode = .followWithHeading
-    }
-    
-    
-    
-    func mapView(_ mapView: MGLMapView, didChange mode: MGLUserTrackingMode, animated: Bool) {
-        
+        mapView.setCenter(mapView.userLocation!.coordinate, animated: false)
+        mapView.userTrackingMode = .followWithHeading
     }
     
 }

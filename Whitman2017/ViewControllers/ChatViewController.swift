@@ -6,6 +6,8 @@
 //  Copyright © 2017年 Orav. All rights reserved.
 //
 
+// messages用realm紀錄
+
 import UIKit
 import NextGrowingTextView
 import SwiftyStateMachine
@@ -25,6 +27,7 @@ class ChatViewController: UIViewController {
     var messages: [MessageModel] = []
     var isExpanding: Bool = false
     var messagesWidth: [CGFloat] = []
+    var taskRegion: TaskRegion? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,25 +54,39 @@ class ChatViewController: UIViewController {
         dialogView.layer.borderColor = UIColor(hex: "#c8c8cd").cgColor
         
         // assume current in w2 region
-        setupMachine(with: .W2)   // base on location
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupMachine(_:)), name: Notif.machineSwitch, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.shutdownMachine), name: Notif.machineShutdown, object: nil)
     }
     
-    func setupMachine(with schema: Schemas) {
-        switch schema {
+    func setupMachine(_ notif: Notification) {
+        guard let userInfo = notif.userInfo, let taskRegion = userInfo["taskRegion"] as? TaskRegion else {
+            return
+        }        
+        switch taskRegion {
         case .W1:
+            messages = []
             messages.append(MessageModel(id: messages.count, text: String(format: Machines.W1.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
             Machines.W1.didTransitionCallback = { [unowned self] (oldState, event, newState) in
+                UserDefaults.standard.set(newState.rawValue, forKey: Keys.stateW1)
                 self.stateChangedAction(newState.message)
             }
         case .W2:
+            messages = []
             messages.append(MessageModel(id: messages.count, text: String(format: Machines.W2.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
             Machines.W2.didTransitionCallback = { [unowned self] (oldState, event, newState) in
+                UserDefaults.standard.set(newState.rawValue, forKey: Keys.stateW2)
                 self.stateChangedAction(newState.message)
-                if newState == .historyEnd {
-                    
-                }
             }
+        default:
+            break
         }
+        !isExpanding ? tapViewAction(UITapGestureRecognizer()) : ()
+    }
+    
+    func shutdownMachine() {
+        taskRegion = nil
+        messages = []
+        isExpanding ? tapViewAction(UITapGestureRecognizer()) : ()
     }
     
     func stateChangedAction(_ message: Any) {
