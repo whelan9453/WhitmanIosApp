@@ -23,6 +23,8 @@ class RestartViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        appDelegate.resetUserDefault()
+        appDelegate.window?.rootViewController?.dismiss(animated: false)
         appDelegate.window?.rootViewController = VC
     }
     

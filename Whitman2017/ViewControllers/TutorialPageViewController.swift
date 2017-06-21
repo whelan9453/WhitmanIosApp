@@ -17,7 +17,8 @@ class TutorialPageViewController: UIPageViewController {
     private(set) lazy var allViewControllers: [UIViewController] = {
         return [self.getControllerFromStoryboard(with: TutorialIdentifier.page1.rawValue),
                 self.getControllerFromStoryboard(with: TutorialIdentifier.page2.rawValue),
-                self.getControllerFromStoryboard(with: TutorialIdentifier.page3.rawValue)]
+                self.getControllerFromStoryboard(with: TutorialIdentifier.page3.rawValue),
+                self.getControllerFromStoryboard(with: TutorialIdentifier.page4.rawValue)]
     }()
     weak var pagerDelegate: TutorialPagerDelegate?
     

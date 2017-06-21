@@ -160,7 +160,7 @@ enum Caption: String {
     case task = "TASK"
     case about = "ABOUT"
     case restart = "RESTART"
-    case submit = "SUBMIT"
+    case publish = "PUBLISH"
 }
 
 enum Asset: String {
@@ -180,6 +180,7 @@ enum Asset: String {
     case regionW = "characterLocation"
     case regionN = "neighborhoodLocation"
     case regionH = "historicalLocation"
+    case regionHQ = "hqIcon"
     
     var image: UIImage {
         return UIImage(named: self.rawValue)!
@@ -197,15 +198,21 @@ enum SegueIdentifier: String {
     case toTask = "ToTask"
     case toAbout = "ToAbout"
     case toRestart = "ToRestart"
-    case toSubmit = "ToSubmit"
+    case toPublish = "ToPublish"
+    case toRoleTask = "ToRoleTask"
+    case toMain = "ToMain"
 }
 
 enum TaskRegion {
     case W1
     case W2
     case W3
+    case H4
     case F
     case N1
+    case N2
+    case N3
+    case N4
     case HQ
     
     var point: MGLPointAnnotation {
@@ -223,6 +230,10 @@ enum TaskRegion {
             point.coordinate = CLLocationCoordinate2D(latitude: 40.70397, longitude: -73.99293)
             point.title = "St. Ann's Warehouse"
             point.subtitle = "Interview Whitman if he's there, or find out about St. Ann's"
+        case .H4:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70397, longitude: -73.99293)
+            point.title = "Lampposts"
+            point.subtitle = "Imagine the life of a Brooklyn lamppost"
         case .F:
             point.coordinate = CLLocationCoordinate2D(latitude: 40.7045, longitude: -73.99037)
             point.title = "Beach"
@@ -231,6 +242,18 @@ enum TaskRegion {
             point.coordinate = CLLocationCoordinate2D(latitude: 40.70309, longitude: -73.99138)
             point.title = "66 Water Street"
             point.subtitle = "Check out one of DUMBO's oldest buildings"
+        case .N2:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70309, longitude: -73.99138)
+            point.title = "Berk's Brooklyn Poetry Shop"
+            point.subtitle = "Check out hot Brooklyn poetry"
+        case .N3:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70309, longitude: -73.99138)
+            point.title = "Washington's Evacuation"
+            point.subtitle = "Find out about the Battle of Brooklyn"
+        case .N4:
+            point.coordinate = CLLocationCoordinate2D(latitude: 40.70309, longitude: -73.99138)
+            point.title = "Brooklyn Bridge"
+            point.subtitle = "Check out a really gorgeous view"
         case .HQ:
             point.coordinate = CLLocationCoordinate2D(latitude: 40.7014, longitude: -73.98645)
             point.title = "Headquarter"
@@ -243,12 +266,12 @@ enum TaskRegion {
         switch self {
         case .W1, .W2, .W3, .F:
             return UIImage(asset: .regionW)
-//        case .H4:
-//            return UIImage(asset: .regionH)
-        case .N1:
+        case .H4:
+            return UIImage(asset: .regionH)
+        case .N1, .N2, .N3, .N4:
             return UIImage(asset: .regionN)
         case .HQ:
-            return UIImage(asset: .userLocation)
+            return UIImage(asset: .regionHQ)
         }
     }
     
@@ -260,10 +283,18 @@ enum TaskRegion {
             return "W2"
         case .W3:
             return "W3"
+        case .H4:
+            return "H4"
         case .F:
             return "F"
         case .N1:
             return "N1"
+        case .N2:
+            return "N2"
+        case .N3:
+            return "N3"
+        case .N4:
+            return "N4"
         case .HQ:
             return "HQ"
         }
@@ -277,7 +308,7 @@ enum TaskRegion {
     }
     
     static var all: [TaskRegion] {
-        return [.W1, .W2, .W3, .F, .N1, .HQ]
+        return [.W1, .W2, .W3, .H4, .F, .N1, .N2, .N3, .N4, .HQ]
     }
 }
 
@@ -338,4 +369,5 @@ enum TutorialIdentifier: String {
     case page1 = "Tutorial1"
     case page2 = "Tutorial2"
     case page3 = "Tutorial3"
+    case page4 = "Tutorial4"
 }

@@ -3,22 +3,19 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "exit.png"
+      "filename" : "photoIcon.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "exit@2x.png"
+      "filename" : "photoIcon@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "exit@3x.png"
+      "filename" : "photoIcon@3x.png"
     }
   ],
-  "properties" : {
-    "template-rendering-intent" : "original"
-  },
   "info" : {
     "author" : "zeplin",
     "version" : "1"

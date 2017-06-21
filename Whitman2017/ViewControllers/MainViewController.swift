@@ -11,12 +11,15 @@ import Mapbox
 
 protocol ChatViewControllerDelegate: class {
     func reSizeHeight(_ height: CGFloat)
+    func getUserCoordinate() -> CLLocationCoordinate2D?
 }
 
 class MainViewController: UIViewController {
     
     @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var chatViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var userPositionButton: UIButton!
+    @IBOutlet weak var orientationButton: UIButton!
     
     let locationManager = CLLocationManager()
     
@@ -41,6 +44,7 @@ class MainViewController: UIViewController {
         mapView.zoomLevel = 18
         mapView.compassView.isHidden = true
         mapContainerView.addSubview(mapView)
+        userPositionButton.imageEdgeInsets = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
         setupTaskPoint()
     }
     
@@ -79,6 +83,13 @@ extension MainViewController: ChatViewControllerDelegate {
             self?.view.layoutIfNeeded()
         }
     }
+    
+    func getUserCoordinate() -> CLLocationCoordinate2D? {
+        guard let coordinate = mapView.userLocation?.coordinate else {
+            return nil
+        }
+        return coordinate
+    }
 }
 
 extension MainViewController: MGLMapViewDelegate {
@@ -116,6 +127,7 @@ extension MainViewController: MGLMapViewDelegate {
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
         mapView.setCenter(mapView.userLocation!.coordinate, animated: false)
+        mapView.showsUserLocation = true
         mapView.userTrackingMode = .followWithHeading
     }
     

@@ -13,7 +13,7 @@ import UIKit
 class MenuViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var cellTitles: [Caption] = [.story, .task, .about, .restart, .submit]
+    var cellTitles: [Caption] = [.story, .task, .about, .restart, .publish]
     var cellImages: [Asset] = [.storyIcon, .taskIcon, .aboutIcon, .restartIcon, .submitIcon]
     
     override func viewDidLoad() {
@@ -34,12 +34,14 @@ class MenuViewController: UIViewController {
         case .toStory:
             VC.navigationItem.title = Caption.story.rawValue
         case .toTask:
-            VC.navigationItem.title = Caption.task.rawValue
+            VC.navigationItem.title = Caption.task.rawValue + " PROGRESS"
         case .toAbout:
             VC.navigationItem.title = Caption.about.rawValue
-        case .toSubmit:
-            VC.navigationItem.title = Caption.submit.rawValue
+        case .toPublish:
+            VC.navigationItem.title = Caption.publish.rawValue
         case .toRestart:
+            break
+        default:
             break
         }
     }
@@ -70,8 +72,8 @@ extension MenuViewController: UITableViewDelegate {
             performSegue(withIdentifier: SegueIdentifier.toAbout.rawValue, sender: nil)
         case cellTitles.index(of: Caption.restart)!:
             performSegue(withIdentifier: SegueIdentifier.toRestart.rawValue, sender: nil)
-        case cellTitles.index(of: Caption.submit)!:
-            performSegue(withIdentifier: SegueIdentifier.toSubmit.rawValue, sender: nil)
+        case cellTitles.index(of: Caption.publish)!:
+            performSegue(withIdentifier: SegueIdentifier.toPublish.rawValue, sender: nil)
         default:
             break
         }

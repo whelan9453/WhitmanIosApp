@@ -24,8 +24,8 @@
 	<string>pk.eyJ1IjoiZXdhcmQtZXNpIiwiYSI6ImNqMmt0cWV6ODAwMjMzMnB1bWhndGxiNDcifQ.axXdZ8TkrTR3LUiiW8710w</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>kerker</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>hahahaha</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>hahahaha</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Verlag-Book.otf</string>
@@ -57,5 +57,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>use photo la</string>
+	<key>NSCameraUsageDescription</key>
+	<string>user camera la</string>
 </dict>
 </plist>

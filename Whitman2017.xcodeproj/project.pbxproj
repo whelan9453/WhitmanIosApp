@@ -32,6 +32,13 @@
 		8BFBC6DD1EED6970008C52B2 /* Schemas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6DC1EED6970008C52B2 /* Schemas.swift */; };
 		8BFBC6DF1EEEE9DD008C52B2 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBC6DE1EEEE9DD008C52B2 /* Location.gpx */; };
 		8BFBC6E01EEEEBF4008C52B2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B002FDD1E9A4FD700A46450 /* Info.plist */; };
+		8BFBC6E41EF6C358008C52B2 /* TaskCaptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6E31EF6C358008C52B2 /* TaskCaptionView.swift */; };
+		8BFBC6E61EF6CB2A008C52B2 /* RoleTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6E51EF6CB2A008C52B2 /* RoleTaskViewController.swift */; };
+		8BFBC6E81EF7B7CE008C52B2 /* TaskCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6E71EF7B7CE008C52B2 /* TaskCaptionCell.swift */; };
+		8BFBC6EA1EF7D1CA008C52B2 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6E91EF7D1CA008C52B2 /* IntroductionViewController.swift */; };
+		8BFBC6EC1EF7F3CA008C52B2 /* TaskRegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6EB1EF7F3CA008C52B2 /* TaskRegionCell.swift */; };
+		8BFBC6EE1EF7F40C008C52B2 /* TaskProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6ED1EF7F40C008C52B2 /* TaskProgressViewController.swift */; };
+		8BFBC6F01EFA2327008C52B2 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBC6EF1EFA2326008C52B2 /* PublishViewController.swift */; };
 		B8F350C9A846CE75C0C92E9E /* Pods_Whitman2017.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22ADAFFD8839AE63FF329225 /* Pods_Whitman2017.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +72,13 @@
 		8BD7C7AF1E9A57D4009D7D29 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8BFBC6DC1EED6970008C52B2 /* Schemas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schemas.swift; sourceTree = "<group>"; };
 		8BFBC6DE1EEEE9DD008C52B2 /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		8BFBC6E31EF6C358008C52B2 /* TaskCaptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCaptionView.swift; sourceTree = "<group>"; };
+		8BFBC6E51EF6CB2A008C52B2 /* RoleTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleTaskViewController.swift; sourceTree = "<group>"; };
+		8BFBC6E71EF7B7CE008C52B2 /* TaskCaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCaptionCell.swift; sourceTree = "<group>"; };
+		8BFBC6E91EF7D1CA008C52B2 /* IntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		8BFBC6EB1EF7F3CA008C52B2 /* TaskRegionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRegionCell.swift; sourceTree = "<group>"; };
+		8BFBC6ED1EF7F40C008C52B2 /* TaskProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskProgressViewController.swift; sourceTree = "<group>"; };
+		8BFBC6EF1EFA2326008C52B2 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				8B47F9941EE857E20082A790 /* PromptView.swift */,
+				8BFBC6E31EF6C358008C52B2 /* TaskCaptionView.swift */,
 				8B4E2EAD1ED49B8000EC8CAA /* Cell */,
 				8B47F9961EE8581C0082A790 /* Xib */,
 			);
@@ -153,6 +168,8 @@
 			children = (
 				8B4E2EB81ED49BA600EC8CAA /* MenuCell.swift */,
 				8B4E2EBA1EDA9B4C00EC8CAA /* ChatCell.swift */,
+				8BFBC6E71EF7B7CE008C52B2 /* TaskCaptionCell.swift */,
+				8BFBC6EB1EF7F3CA008C52B2 /* TaskRegionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -189,6 +206,10 @@
 				8B4E2EC01EDD3C8500EC8CAA /* RegisterViewController.swift */,
 				8B47F9901EDD8F750082A790 /* RestartViewController.swift */,
 				8B47F9921EDD94580082A790 /* HomeViewController.swift */,
+				8BFBC6E51EF6CB2A008C52B2 /* RoleTaskViewController.swift */,
+				8BFBC6E91EF7D1CA008C52B2 /* IntroductionViewController.swift */,
+				8BFBC6ED1EF7F40C008C52B2 /* TaskProgressViewController.swift */,
+				8BFBC6EF1EFA2326008C52B2 /* PublishViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -333,8 +354,10 @@
 			files = (
 				8B765B6D1E9A6C1300D2B24F /* MainViewController.swift in Sources */,
 				8B002FD21E9A4FD700A46450 /* AppDelegate.swift in Sources */,
+				8BFBC6E61EF6CB2A008C52B2 /* RoleTaskViewController.swift in Sources */,
 				8B4E2EBB1EDA9B4D00EC8CAA /* ChatCell.swift in Sources */,
 				798942651EED6D3A0065AA7B /* Geotification.swift in Sources */,
+				8BFBC6E81EF7B7CE008C52B2 /* TaskCaptionCell.swift in Sources */,
 				8B4E2EC11EDD3C8500EC8CAA /* RegisterViewController.swift in Sources */,
 				8B4E2EAB1ED341E400EC8CAA /* TutorialPageViewController.swift in Sources */,
 				8B47F9931EDD94580082A790 /* HomeViewController.swift in Sources */,
@@ -342,9 +365,14 @@
 				8B4E2EBF1EDC612F00EC8CAA /* RoleSelectViewController.swift in Sources */,
 				8B765B6B1E9A6BE600D2B24F /* ChatViewController.swift in Sources */,
 				8B4E2EBD1EDBCAC000EC8CAA /* Constants.swift in Sources */,
+				8BFBC6EA1EF7D1CA008C52B2 /* IntroductionViewController.swift in Sources */,
+				8BFBC6EE1EF7F40C008C52B2 /* TaskProgressViewController.swift in Sources */,
+				8BFBC6EC1EF7F3CA008C52B2 /* TaskRegionCell.swift in Sources */,
 				8BD7C7B01E9A57D4009D7D29 /* MenuViewController.swift in Sources */,
+				8BFBC6E41EF6C358008C52B2 /* TaskCaptionView.swift in Sources */,
 				8B00975F1EBF385B00DFB3A6 /* TestViewController.swift in Sources */,
 				8BFBC6DD1EED6970008C52B2 /* Schemas.swift in Sources */,
+				8BFBC6F01EFA2327008C52B2 /* PublishViewController.swift in Sources */,
 				8B4E2EB91ED49BA600EC8CAA /* MenuCell.swift in Sources */,
 				8B47F9951EE857E20082A790 /* PromptView.swift in Sources */,
 				8B00975D1E9A72C300DFB3A6 /* ExtensionUtil.swift in Sources */,
