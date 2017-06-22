@@ -12,6 +12,12 @@ import Mapbox
 protocol ChatViewControllerDelegate: class {
     func reSizeHeight(_ height: CGFloat)
     func getUserCoordinate() -> CLLocationCoordinate2D?
+    func setResetBarItem(with state: Bool)
+}
+
+protocol MainViewControllerDelegate: class {
+    func resetRegion()
+    func hideMessageView()
 }
 
 class MainViewController: UIViewController {
@@ -20,10 +26,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var chatViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var userPositionButton: UIButton!
     @IBOutlet weak var orientationButton: UIButton!
+    @IBOutlet weak var resetBarItem: UIBarButtonItem!
     
     let locationManager = CLLocationManager()
     
     var mapView: MGLMapView!
+    weak var delegate: MainViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +42,7 @@ class MainViewController: UIViewController {
         navigationController?.setGradientBar()
         if let chatVC = childViewControllers.first as? ChatViewController {
             chatVC.delegate = self
+            delegate = chatVC
         }
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -44,7 +53,8 @@ class MainViewController: UIViewController {
         mapView.zoomLevel = 18
         mapView.compassView.isHidden = true
         mapContainerView.addSubview(mapView)
-        userPositionButton.imageEdgeInsets = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapAction))
+        mapView.addGestureRecognizer(tapRecognizer)
         setupTaskPoint()
     }
     
@@ -57,6 +67,32 @@ class MainViewController: UIViewController {
             locationManager.startMonitoring(for: region)
         }
         
+    }
+    
+    func tapAction() {
+        view.endEditing(true)
+        reSizeHeight(Constants.chatVCMinHeight)
+        delegate?.hideMessageView()
+    }
+    
+    @IBAction func userPositionAction(_ sender: UIButton) {
+        guard let location = mapView.userLocation else {
+            return
+        }
+        mapView.setCenter(location.coordinate, animated: true)
+        mapView.userTrackingMode = .followWithHeading
+    }
+    
+    @IBAction func orientationAction(_ sender: UIButton) {
+        if mapView.userTrackingMode != .followWithHeading {
+            mapView.userTrackingMode = .followWithHeading
+        } else {
+            mapView.resetNorth()
+        }
+    }
+    
+    @IBAction func resetTaskAction(_ sender: UIBarButtonItem) {
+        delegate?.resetRegion()
     }
     
     // MARK: - Navigation
@@ -89,6 +125,10 @@ extension MainViewController: ChatViewControllerDelegate {
             return nil
         }
         return coordinate
+    }
+    
+    func setResetBarItem(with state: Bool) {
+        navigationItem.rightBarButtonItem = state ? resetBarItem : nil
     }
 }
 

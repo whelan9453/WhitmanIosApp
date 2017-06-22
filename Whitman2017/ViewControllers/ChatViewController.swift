@@ -25,7 +25,11 @@ class ChatViewController: UIViewController {
     var messages: [MessageModel] = []
     var isExpanding: Bool = false
     var messagesWidth: [CGFloat] = []
-    var taskRegion: TaskRegion? = nil
+    var taskRegion: TaskRegion? = nil {
+        didSet {
+            delegate?.setResetBarItem(with: taskRegion != nil)
+        }
+    }
     var picker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -66,9 +70,10 @@ class ChatViewController: UIViewController {
             return
         }
         self.taskRegion = taskRegion
+        preloadMessages()
+        defer { resizeCollectionView() }
         switch taskRegion {
         case .W1:
-            preloadMessages()
             if messages.isEmpty {
                 addMessage(model: MessageModel(id: messages.count, text: String(format: Machines.W1.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
             }
@@ -78,7 +83,7 @@ class ChatViewController: UIViewController {
             }
         case .W2:
             preloadMessages()
-            if messages.isEmpty {
+            if messages.isEmpty {   // checkState
                 addMessage(model: MessageModel(id: messages.count, text: String(format: Machines.W2.state.message as! String, UserDefaults.standard.string(forKey: Keys.userName) ?? ""), image: nil, type: .opponent))
             }
             Machines.W2.didTransitionCallback = { [unowned self] (oldState, event, newState) in
@@ -138,18 +143,16 @@ class ChatViewController: UIViewController {
     }
     
     func addMessage(model: MessageModel) {
-        guard let taskRegion = taskRegion else {
-            
-            return
+        if checkTaskRegion() {
+            if let currentDict = UserDefaults.standard.value(forKey: taskRegion!.messageKey) as? [[String: Any]] {
+                var newDict = currentDict
+                newDict.append(model.toDict())
+                UserDefaults.standard.set(newDict, forKey: taskRegion!.messageKey)
+            } else {
+                UserDefaults.standard.set([model.toDict()], forKey: taskRegion!.messageKey)
+            }
+            messages.append(model)
         }
-        if let currentDict = UserDefaults.standard.value(forKey: taskRegion.messageKey) as? [[String: Any]] {
-            var newDict = currentDict
-            newDict.append(model.toDict())
-            UserDefaults.standard.set(newDict, forKey: taskRegion.messageKey)
-        } else {
-            UserDefaults.standard.set([model.toDict()], forKey: taskRegion.messageKey)
-        }
-        messages.append(model)
     }
     
     func keyboardWillHide(_ sender: Notification) {
@@ -256,6 +259,9 @@ class ChatViewController: UIViewController {
             collectionView.dataSource = self
             collectionView.reloadData()
             resizeCollectionView()
+            if messages.count > 0 {
+                collectionView.scrollToItem(at: IndexPath(item: 0, section: messages.count - 1), at: .bottom, animated: true)
+            }
         } else {
             collectionViewBottomConstraint.constant = 0
             collectionView.dataSource = nil
@@ -433,4 +439,20 @@ extension ChatViewController: UIImagePickerControllerDelegate {
 
 extension ChatViewController: UINavigationControllerDelegate {
     
+}
+
+extension ChatViewController: MainViewControllerDelegate {
+    func resetRegion() {
+        if checkTaskRegion() {
+            messages = []
+            collectionView.reloadData()
+            Machines.reset(at: taskRegion!)
+            UserDefaults.standard.removeObject(forKey: taskRegion!.messageKey)
+            NotificationCenter.default.post(name: Notif.machineSwitch, object: nil, userInfo: ["taskRegion": taskRegion!])
+        }
+    }
+    
+    func hideMessageView() {
+        tapViewAction(UITapGestureRecognizer())
+    }
 }

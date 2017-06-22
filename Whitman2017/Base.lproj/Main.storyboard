@@ -25,7 +25,7 @@
         <!--Home View Controller-->
         <scene sceneID="b7z-75-uyX">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQ7-qe-6k4" customClass="HomeViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQ7-qe-6k4" customClass="HomeViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VdR-DO-aUM"/>
                         <viewControllerLayoutGuide type="bottom" id="ee2-2c-m9S"/>
@@ -88,7 +88,7 @@
         <!--Tutorial Page View Controller-->
         <scene sceneID="UzF-yr-kwc">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="W77-HY-nzN" customClass="TutorialPageViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="W77-HY-nzN" customClass="TutorialPageViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="480"/>
                 </pageViewController>
@@ -153,7 +153,7 @@
         <!--Role Select View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RoleSelectViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RoleSelectViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -293,7 +293,7 @@ YOU WANT TO PLAY:</string>
         <!--Register View Controller-->
         <scene sceneID="Yh2-aN-6NL">
             <objects>
-                <viewController id="fFL-Vs-1TC" customClass="RegisterViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fFL-Vs-1TC" customClass="RegisterViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UK8-ee-zp2"/>
                         <viewControllerLayoutGuide type="bottom" id="hvd-Oi-0si"/>
@@ -423,7 +423,7 @@ YOU WANT TO PLAY:</string>
         <!--Role Task View Controller-->
         <scene sceneID="O2Z-z5-XCv">
             <objects>
-                <viewController id="miU-P6-6Zw" customClass="RoleTaskViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="miU-P6-6Zw" customClass="RoleTaskViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m4p-Xf-HfX"/>
                         <viewControllerLayoutGuide type="bottom" id="S5X-5Q-4cL"/>
@@ -470,7 +470,7 @@ YOU WANT TO PLAY:</string>
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCaptionCell" id="aAE-6F-iwf" customClass="TaskCaptionCell" customModule="Whitman2017" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCaptionCell" id="aAE-6F-iwf" customClass="TaskCaptionCell" customModule="Lost_In_Time" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="201" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aAE-6F-iwf" id="Fte-7P-ild">
@@ -568,7 +568,7 @@ YOU WANT TO PLAY:</string>
         <!--Test View Controller-->
         <scene sceneID="mot-Re-Lg4">
             <objects>
-                <viewController id="YwP-eR-kPP" customClass="TestViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YwP-eR-kPP" customClass="TestViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D4D-Xj-sie"/>
                         <viewControllerLayoutGuide type="bottom" id="deO-1a-73a"/>
@@ -670,7 +670,7 @@ YOU WANT TO PLAY:</string>
         <!--Introduction View Controller-->
         <scene sceneID="8V9-bh-FsS">
             <objects>
-                <viewController id="CDf-tC-B7Q" customClass="IntroductionViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CDf-tC-B7Q" customClass="IntroductionViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EZC-gG-T1F"/>
                         <viewControllerLayoutGuide type="bottom" id="Rzr-26-rA0"/>
@@ -715,7 +715,7 @@ YOU WANT TO PLAY:</string>
         <!--Menu View Controller-->
         <scene sceneID="JXO-Ib-POA">
             <objects>
-                <viewController id="3fi-pE-Asa" customClass="MenuViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3fi-pE-Asa" customClass="MenuViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tD4-AY-nhN"/>
                         <viewControllerLayoutGuide type="bottom" id="YQ9-w0-r0D"/>
@@ -733,7 +733,7 @@ YOU WANT TO PLAY:</string>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="6HA-vT-jSx" customClass="MenuCell" customModule="Whitman2017" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="6HA-vT-jSx" customClass="MenuCell" customModule="Lost_In_Time" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="123" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HA-vT-jSx" id="LCh-9z-sza">
@@ -866,7 +866,7 @@ Track him down, get his story, and let him pull you into the past for a little w
         <!--Main View Controller-->
         <scene sceneID="dli-wK-oux">
             <objects>
-                <viewController id="cZk-n7-ubr" customClass="MainViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cZk-n7-ubr" customClass="MainViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j2s-uA-xbI"/>
                         <viewControllerLayoutGuide type="bottom" id="hQe-2F-jS1"/>
@@ -886,7 +886,11 @@ Track him down, get his story, and let him pull you into the past for a little w
                                     <constraint firstAttribute="height" constant="44" id="jHp-ag-qBa"/>
                                     <constraint firstAttribute="width" constant="44" id="y9G-Au-mnP"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                 <state key="normal" image="findyourposition"/>
+                                <connections>
+                                    <action selector="userPositionAction:" destination="cZk-n7-ubr" eventType="touchUpInside" id="EWI-d2-tyF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WB-q6-2Xy">
                                 <rect key="frame" x="282" y="76" width="44" height="44"/>
@@ -896,6 +900,9 @@ Track him down, get his story, and let him pull you into the past for a little w
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                 <state key="normal" image="mapOrientation"/>
+                                <connections>
+                                    <action selector="orientationAction:" destination="cZk-n7-ubr" eventType="touchUpInside" id="oOQ-GD-SXD"/>
+                                </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-x1-a5m">
                                 <rect key="frame" x="0.0" y="530" width="375" height="137"/>
@@ -947,18 +954,22 @@ Track him down, get his story, and let him pull you into the past for a little w
                                 <constraint firstAttribute="trailing" secondItem="qCh-xy-YTr" secondAttribute="trailing" id="s1Q-nU-yBU"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="exit" id="5cd-c1-jS0">
-                            <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chatViewHeightConstraint" destination="yMh-Db-ml3" id="Y3b-Oa-Rvh"/>
                         <outlet property="mapContainerView" destination="WEh-sQ-mh5" id="M3H-lf-C7W"/>
                         <outlet property="orientationButton" destination="4WB-q6-2Xy" id="KF1-cf-0tR"/>
+                        <outlet property="resetBarItem" destination="5cd-c1-jS0" id="Tgh-oW-NFh"/>
                         <outlet property="userPositionButton" destination="7zX-qz-uan" id="2ie-fS-1yV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNr-hX-ip1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem image="exit" id="5cd-c1-jS0">
+                    <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                    <connections>
+                        <action selector="resetTaskAction:" destination="cZk-n7-ubr" id="Yu1-JQ-uX3"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="3031" y="437"/>
         </scene>
@@ -983,7 +994,7 @@ Track him down, get his story, and let him pull you into the past for a little w
         <!--Chat View Controller-->
         <scene sceneID="Kgz-07-Xbm">
             <objects>
-                <viewController id="oHV-Qa-H70" customClass="ChatViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oHV-Qa-H70" customClass="ChatViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sdO-pi-Mdk"/>
                         <viewControllerLayoutGuide type="bottom" id="RMO-Tc-qXW"/>
@@ -1009,7 +1020,7 @@ Track him down, get his story, and let him pull you into the past for a little w
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChatCell" id="bC3-Ra-wMi" customClass="ChatCell" customModule="Whitman2017" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChatCell" id="bC3-Ra-wMi" customClass="ChatCell" customModule="Lost_In_Time" customModuleProvider="target">
                                         <rect key="frame" x="87.5" y="0.0" width="200" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1426,7 +1437,7 @@ orientation</string>
         <!--Task Progress View Controller-->
         <scene sceneID="4zA-B4-ZcZ">
             <objects>
-                <viewController id="Gpw-rk-5FS" customClass="TaskProgressViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gpw-rk-5FS" customClass="TaskProgressViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rdq-VL-nIi"/>
                         <viewControllerLayoutGuide type="bottom" id="ojo-hm-6iz"/>
@@ -1456,7 +1467,7 @@ orientation</string>
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskRegionCell" id="2jo-fE-XSL" customClass="TaskRegionCell" customModule="Whitman2017" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskRegionCell" id="2jo-fE-XSL" customClass="TaskRegionCell" customModule="Lost_In_Time" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="62" width="375" height="201"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2jo-fE-XSL" id="TZr-nl-2h2">
@@ -1646,7 +1657,7 @@ orientation</string>
         <!--Restart View Controller-->
         <scene sceneID="qUO-ka-0ED">
             <objects>
-                <viewController id="WDC-ve-qmi" customClass="RestartViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WDC-ve-qmi" customClass="RestartViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TKV-u6-q8C"/>
                         <viewControllerLayoutGuide type="bottom" id="j7U-41-5IV"/>
@@ -1734,7 +1745,7 @@ orientation</string>
         <!--Publish View Controller-->
         <scene sceneID="0en-mY-1z4">
             <objects>
-                <viewController id="bfD-ur-Zwm" customClass="PublishViewController" customModule="Whitman2017" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bfD-ur-Zwm" customClass="PublishViewController" customModule="Lost_In_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yMH-zg-wad"/>
                         <viewControllerLayoutGuide type="bottom" id="bgE-j1-OoL"/>
@@ -1836,7 +1847,7 @@ orientation</string>
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONGRATULATION! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Amq-4p-Z6K">
-                                        <rect key="frame" x="89" y="55" width="198" height="20"/>
+                                        <rect key="frame" x="88.5" y="55" width="198" height="20"/>
                                         <fontDescription key="fontDescription" name="Verlag-Bold" family="Verlag" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2055,7 +2066,7 @@ RmluZCBXaGl0bWFuIANhbmQgSGFycmlzb24gYW5kIANpbnRlcnZpZXcgdGhlbQ
         <image name="characterLocation" width="41" height="60"/>
         <image name="deLogo" width="140" height="140"/>
         <image name="dtLogo" width="140" height="140"/>
-        <image name="exit" width="30" height="30"/>
+        <image name="exit" width="26" height="26"/>
         <image name="exitIcon" width="41" height="41"/>
         <image name="findyourposition" width="41" height="41"/>
         <image name="headerIcon" width="211" height="54"/>

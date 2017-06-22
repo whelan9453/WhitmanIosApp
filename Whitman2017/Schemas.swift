@@ -10,8 +10,21 @@ import Foundation
 import SwiftyStateMachine
 
 struct Machines {
-    static let W1 = StateMachine(schema: Schemas.W1.schema as! StateMachineSchema<W1State, UserEvent, Void>, subject: ())
-    static let W2 = StateMachine(schema: Schemas.W2.schema as! StateMachineSchema<W2State, UserEvent, Void>, subject: ())
+    static var W1 = StateMachine(schema: Schemas.W1.schema as! StateMachineSchema<W1State, UserEvent, Void>, subject: ())
+    static var W2 = StateMachine(schema: Schemas.W2.schema as! StateMachineSchema<W2State, UserEvent, Void>, subject: ())
+    
+    static func reset(at taskRegion: TaskRegion) {
+        switch taskRegion {
+        case .W1:
+            UserDefaults.standard.set(0, forKey: Keys.stateW1)
+            W1 = StateMachine(schema: Schemas.W1.schema as! StateMachineSchema<W1State, UserEvent, Void>,subject: ())
+        case .W2:
+            UserDefaults.standard.set(0, forKey: Keys.stateW2)
+            W2 = StateMachine(schema: Schemas.W2.schema as! StateMachineSchema<W2State, UserEvent, Void>, subject: ())
+        default:
+            break
+        }
+    }
 }
 
 enum Schemas {
