@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Whitman2017.xcodeproj">
+      location = "group:/Users/tobyhsu/SourceTree/Bitbucket/Whitman2017/Lost In Time.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
