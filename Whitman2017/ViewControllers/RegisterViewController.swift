@@ -29,6 +29,13 @@ class RegisterViewController: UIViewController {
     @IBAction func startAction(_ sender: UIButton) {
         UserDefaults.standard.set(mailTextField.text!, forKey: Keys.email)
         UserDefaults.standard.set(nameTextField.text!, forKey: Keys.userName)
+        // create user
+        //        RestAPIUtil.share.createUser(with: nameTextField.text!, mailTextField.text!)
+        //            .then { session -> () in
+        //                print(session)
+        //            }.catch { error in
+        //                print(error)
+        //        }
     }
 
     /*

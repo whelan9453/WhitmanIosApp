@@ -11,8 +11,31 @@ import Alamofire
 import PromiseKit
 import SwiftyJSON
 
+enum WhitmanError: Int {
+    case userNotFound = 1002
+    case userExisted = 1003
+    case invalidKey = 1050
+    case invalidParameters = 1051
+    case invalidSessionToken = 1052
+
+    var domain: String {
+        switch self {
+        case .userNotFound: return "user not found"
+        case .userExisted: return "user existed"
+        case .invalidKey: return "invalid key"
+        case .invalidParameters: return "invalid parameters"
+        case .invalidSessionToken: return "invalid session token"
+        }
+    }
+    var error: NSError {
+        return NSError(domain: self.domain, code: self.rawValue, userInfo: nil)
+    }
+}
+
 class RestAPIUtil {
     static var share = RestAPIUtil()
+    private let apiURL = "https://whitman9453.azurewebsites.net/1"
+    private let restKey = "1317f83b74067b835f3f8a2e86da0bd2d2006196efa77b7f0511096e68a9b0e7"
     
     func createImgurURL(with data: Data) -> Promise<String> {
         return Promise(resolvers: { (fulfill, reject) in
@@ -34,6 +57,29 @@ class RestAPIUtil {
                     }
                 case .failure(let encodingError):
                     print(encodingError)
+                }
+            }
+        })
+    }
+    
+    func createUser(with name: String, _ mail: String) -> Promise<String> {
+        return Promise(resolvers: { (fulfill, reject) in
+            Alamofire.request("\(apiURL)/createUser", method: .post, parameters: ["email": mail, "displayName": name], encoding: JSONEncoding.default, headers: ["x-whitman-rest-key": restKey, "content-type": "application/json"]).responseJSON { (response) in
+                if let error = response.error {
+                    reject(error)
+                    print(error)
+                } else {
+                    let json = JSON(response.result.value!)
+                    if let code = json["code"].int, let err = WhitmanError(rawValue: code) {
+                        reject(err as! Error)
+                    } else {
+                        if let token = json["token"].string {
+                            fulfill(token)
+                        } else {
+                            reject(NSError(domain: "unknow exception", code: -1, userInfo: nil))
+                        }
+                    }
+                    debugPrint(response)
                 }
             }
         })
