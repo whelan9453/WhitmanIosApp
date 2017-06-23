@@ -28,6 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+    
+//        let data = UIImageJPEGRepresentation(UIImage(asset: .prompt), 0.9)
+//        RestAPIUtil.share.createImgurURL(with: data!)
+//            .then { link -> () in
+//                print(link)
+//            }.catch { error in
+//                print(error)
+//        }
         return true
     }
     

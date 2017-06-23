@@ -53,8 +53,6 @@ class MainViewController: UIViewController {
         mapView.zoomLevel = 18
         mapView.compassView.isHidden = true
         mapContainerView.addSubview(mapView)
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapAction))
-        mapView.addGestureRecognizer(tapRecognizer)
         setupTaskPoint()
     }
     
@@ -134,8 +132,6 @@ extension MainViewController: ChatViewControllerDelegate {
 
 extension MainViewController: MGLMapViewDelegate {
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
         return true
     }
     

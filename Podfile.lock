@@ -1,15 +1,31 @@
 PODS:
+  - Alamofire (4.4.0)
   - Hue (2.0.1)
   - Mapbox-iOS-SDK (3.5.4)
   - NextGrowingTextView (1.1.0)
+  - PromiseKit (4.2.2):
+    - PromiseKit/Foundation (= 4.2.2)
+    - PromiseKit/QuartzCore (= 4.2.2)
+    - PromiseKit/UIKit (= 4.2.2)
+  - PromiseKit/CorePromise (4.2.2)
+  - PromiseKit/Foundation (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.2.2):
+    - PromiseKit/CorePromise
   - SideMenu (2.3.2)
+  - SwiftyJSON (3.1.4)
   - SwiftyStateMachine (0.3.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Hue
   - Mapbox-iOS-SDK (~> 3.5)
   - NextGrowingTextView
+  - PromiseKit
   - SideMenu
+  - SwiftyJSON
   - SwiftyStateMachine (from `https://github.com/OnePieceLv/SwiftyStateMachine.git`, branch `Swift-3.0`)
 
 EXTERNAL SOURCES:
@@ -23,12 +39,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/OnePieceLv/SwiftyStateMachine.git
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
   NextGrowingTextView: ad11259355559362ac82046438152a312aa0d7ee
+  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyStateMachine: 064b3983708aea40169ea60adabbe4ae08885198
 
-PODFILE CHECKSUM: 7ae270c4c1f25f00ff052b4a33401952af753a40
+PODFILE CHECKSUM: dc3a5ee7b0661772c9bb10c44d8b54f517dc92dc
 
 COCOAPODS: 1.2.1

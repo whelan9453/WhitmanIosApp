@@ -453,6 +453,6 @@ extension ChatViewController: MainViewControllerDelegate {
     }
     
     func hideMessageView() {
-        tapViewAction(UITapGestureRecognizer())
+        isExpanding ? tapViewAction(UITapGestureRecognizer()) : ()
     }
 }

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0023E55B850974B3AD288749 /* Pods_Lost_In_Time.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E490719C614F78C7EC331DD2 /* Pods_Lost_In_Time.framework */; };
 		798942651EED6D3A0065AA7B /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798942641EED6D3A0065AA7B /* Geotification.swift */; };
 		8B002FD21E9A4FD700A46450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B002FD11E9A4FD700A46450 /* AppDelegate.swift */; };
 		8B002FD71E9A4FD700A46450 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B002FD51E9A4FD700A46450 /* Main.storyboard */; };
 		8B002FDC1E9A4FD700A46450 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B002FDA1E9A4FD700A46450 /* LaunchScreen.storyboard */; };
 		8B00975D1E9A72C300DFB3A6 /* ExtensionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00975C1E9A72C300DFB3A6 /* ExtensionUtil.swift */; };
 		8B00975F1EBF385B00DFB3A6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00975E1EBF385B00DFB3A6 /* TestViewController.swift */; };
+		8B06BDBC1EFCEE10007B64AB /* RestAPIUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B06BDBB1EFCEE10007B64AB /* RestAPIUtil.swift */; };
 		8B47F9911EDD8F750082A790 /* RestartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F9901EDD8F750082A790 /* RestartViewController.swift */; };
 		8B47F9931EDD94580082A790 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F9921EDD94580082A790 /* HomeViewController.swift */; };
 		8B47F9951EE857E20082A790 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F9941EE857E20082A790 /* PromptView.swift */; };
@@ -54,6 +56,7 @@
 		8B002FDD1E9A4FD700A46450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B00975C1E9A72C300DFB3A6 /* ExtensionUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUtil.swift; sourceTree = "<group>"; };
 		8B00975E1EBF385B00DFB3A6 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		8B06BDBB1EFCEE10007B64AB /* RestAPIUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIUtil.swift; sourceTree = "<group>"; };
 		8B47F9901EDD8F750082A790 /* RestartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartViewController.swift; sourceTree = "<group>"; };
 		8B47F9921EDD94580082A790 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8B47F9941EE857E20082A790 /* PromptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
@@ -79,6 +82,9 @@
 		8BFBC6EB1EF7F3CA008C52B2 /* TaskRegionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRegionCell.swift; sourceTree = "<group>"; };
 		8BFBC6ED1EF7F40C008C52B2 /* TaskProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskProgressViewController.swift; sourceTree = "<group>"; };
 		8BFBC6EF1EFA2326008C52B2 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
+		C3651C31A0CC84E514E4BE24 /* Pods-Lost In Time.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost In Time.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lost In Time/Pods-Lost In Time.debug.xcconfig"; sourceTree = "<group>"; };
+		E490719C614F78C7EC331DD2 /* Pods_Lost_In_Time.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lost_In_Time.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9A2C1826585B34452CBF800 /* Pods-Lost In Time.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost In Time.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lost In Time/Pods-Lost In Time.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F350C9A846CE75C0C92E9E /* Pods_Whitman2017.framework in Frameworks */,
+				0023E55B850974B3AD288749 /* Pods_Lost_In_Time.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				22ADAFFD8839AE63FF329225 /* Pods_Whitman2017.framework */,
+				E490719C614F78C7EC331DD2 /* Pods_Lost_In_Time.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8B00975C1E9A72C300DFB3A6 /* ExtensionUtil.swift */,
+				8B06BDBB1EFCEE10007B64AB /* RestAPIUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -219,6 +228,8 @@
 			children = (
 				44397A952C11307ED6720CE2 /* Pods-Whitman2017.debug.xcconfig */,
 				2C63A79C248D574FCFEE5363 /* Pods-Whitman2017.release.xcconfig */,
+				C3651C31A0CC84E514E4BE24 /* Pods-Lost In Time.debug.xcconfig */,
+				E9A2C1826585B34452CBF800 /* Pods-Lost In Time.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -312,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Whitman2017/Pods-Whitman2017-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lost In Time/Pods-Lost In Time-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		932D58464CBCEAF3507935E3 /* [CP] Embed Pods Frameworks */ = {
@@ -327,7 +338,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Whitman2017/Pods-Whitman2017-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lost In Time/Pods-Lost In Time-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8E529270F76B2CA93938ED1 /* [CP] Check Pods Manifest.lock */ = {
@@ -353,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B765B6D1E9A6C1300D2B24F /* MainViewController.swift in Sources */,
+				8B06BDBC1EFCEE10007B64AB /* RestAPIUtil.swift in Sources */,
 				8B002FD21E9A4FD700A46450 /* AppDelegate.swift in Sources */,
 				8BFBC6E61EF6CB2A008C52B2 /* RoleTaskViewController.swift in Sources */,
 				8B4E2EBB1EDA9B4D00EC8CAA /* ChatCell.swift in Sources */,
@@ -498,7 +510,7 @@
 		};
 		8B002FE11E9A4FD700A46450 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44397A952C11307ED6720CE2 /* Pods-Whitman2017.debug.xcconfig */;
+			baseConfigurationReference = C3651C31A0CC84E514E4BE24 /* Pods-Lost In Time.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -513,7 +525,7 @@
 		};
 		8B002FE21E9A4FD700A46450 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C63A79C248D574FCFEE5363 /* Pods-Whitman2017.release.xcconfig */;
+			baseConfigurationReference = E9A2C1826585B34452CBF800 /* Pods-Lost In Time.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
